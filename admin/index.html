@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 | 顺息摄影工作室</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #c9a962;
+            --border: #2a2a2a;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Login Page */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+        }
+
+        .login-box {
+            background: var(--bg-card);
+            padding: 3rem;
+            width: 400px;
+            border: 1px solid var(--border);
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            border: none;
+            color: var(--bg-primary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #e0c080;
+        }
+
+        .login-error {
+            color: var(--danger);
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 2rem 0;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            color: var(--text-primary);
+            background: rgba(201, 169, 98, 0.1);
+            border-left: 3px solid var(--accent);
+        }
+
+        .sidebar-section {
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: #e0c080;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .stat-change {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        /* Data Table */
+        .data-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table tr:hover {
+            background: rgba(201, 169, 98, 0.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            border-radius: 3px;
+        }
+
+        .status-pending {
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+
+        .status-paid {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .status-completed {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        /* Image Upload Section */
+        .upload-area {
+            border: 2px dashed var(--border);
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: var(--text-secondary);
+        }
+
+        /* Image Gallery */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .image-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .image-btn.delete {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Section Tabs */
+        .section-tabs {
+            display: none;
+        }
+
+        .section-tabs.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Section -->
+    <div class="login-container" id="loginSection">
+        <div class="login-box">
+            <h1 class="login-title">顺息工作室</h1>
+            <p class="login-subtitle">管理后台登录</p>
+            <form id="loginForm">
+                <input type="text" class="login-input" id="loginUsername" placeholder="用户名" required>
+                <input type="password" class="login-input" id="loginPassword" placeholder="密码" required>
+                <button type="submit" class="login-btn">登录</button>
+            </form>
+            <p class="login-error" id="loginError">用户名或密码错误</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard" id="dashboardSection">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">顺息后台</div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" data-section="overview">概览</a></li>
+                <li><a href="#" data-section="bookings">预约管理</a></li>
+            </ul>
+            <div class="sidebar-section">内容管理</div>
+            <ul class="sidebar-nav">
+                <li><a href="#" data-section="images">图片管理</a></li>
+                <li><a href="#" data-section="pricing">套餐设置</a></li>
+            </ul>
+            <div class="sidebar-section">系统</div>
+            <ul class="sidebar-nav">
+                <li><a href="#" data-section="settings">系统设置</a></li>
+                <li><a href="#" id="logoutBtn">退出登录</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div class="section-tabs active" id="overviewSection">
+                <div class="page-header">
+                    <h1 class="page-title">概览</h1>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">本月预约</div>
+                        <div class="stat-value">23</div>
+                        <div class="stat-change positive">↑ 15%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">待处理预约</div>
+                        <div class="stat-value">5</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">本月收入</div>
+                        <div class="stat-value">¥8,540</div>
+                        <div class="stat-change positive">↑ 22%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">作品总数</div>
+                        <div class="stat-value">87</div>
+                    </div>
+                </div>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">最近预约</h3>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>客户</th>
+                                <th>套餐</th>
+                                <th>IP</th>
+                                <th>时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentBookings">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bookings Section -->
+            <div class="section-tabs" id="bookingsSection">
+                <div class="page-header">
+                    <h1 class="page-title">预约管理</h1>
+                </div>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">所有预约</h3>
+                        <div class="header-actions">
+                            <select class="form-select" style="width: auto;" id="bookingFilter">
+                                <option value="all">全部状态</option>
+                                <option value="pending">待付款</option>
+                                <option value="paid">已付款</option>
+                                <option value="completed">已完成</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>客户</th>
+                                <th>联系方式</th>
+                                <th>套餐</th>
+                                <th>IP</th>
+                                <th>棚数</th>
+                                <th>时长</th>
+                                <th>状态</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allBookings">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Images Section -->
+            <div class="section-tabs" id="imagesSection">
+                <div class="page-header">
+                    <h1 class="page-title">图片管理</h1>
+                </div>
+                
+                <div class="data-card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">上传新图片</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">📁</div>
+                            <p class="upload-text">点击或拖拽图片到此处上传</p>
+                            <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                            <select class="form-select" id="imageIP" style="flex: 1;">
+                                <option value="">选择IP分类</option>
+                                <option value="王者荣耀">王者荣耀</option>
+                                <option value="第五人格">第五人格</option>
+                                <option value="鸣潮">鸣潮</option>
+                                <option value="原神">原神</option>
+                                <option value="无期迷途">无期迷途</option>
+                                <option value="明日方舟">明日方舟</option>
+                                <option value="崩坏星穹铁道">崩坏星穹铁道</option>
+                                <option value="英雄联盟">英雄联盟</option>
+                                <option value="永劫无间">永劫无间</option>
+                                <option value="碧蓝航线">碧蓝航线</option>
+                            </select>
+                            <select class="form-select" id="imageType" style="flex: 1;">
+                                <option value="gallery">作品展示</option>
+                                <option value="hero">首页轮播</option>
+                                <option value="ip-cover">IP封面</option>
+                            </select>
+                            <button class="btn btn-primary" id="uploadBtn">上传</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">现有图片</h3>
+                        <select class="form-select" style="width: auto;" id="imageFilter">
+                            <option value="all">全部IP</option>
+                            <option value="王者荣耀">王者荣耀</option>
+                            <option value="原神">原神</option>
+                            <option value="第五人格">第五人格</option>
+                        </select>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="image-grid" id="imageGallery">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="section-tabs" id="pricingSection">
+                <div class="page-header">
+                    <h1 class="page-title">套餐设置</h1>
+                </div>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">套餐列表</h3>
+                        <button class="btn btn-primary" onclick="openPricingModal()">添加套餐</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>套餐名称</th>
+                                <th>价格</th>
+                                <th>包含内容</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pricingTable">
+                            <tr>
+                                <td>基础档</td>
+                                <td>¥199</td>
+                                <td>1个棚 / 精修5张 / 当天出片</td>
+                                <td><span class="status-badge status-paid">启用</span></td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>进阶档</td>
+                                <td>¥299</td>
+                                <td>2个棚 / 精修15张 / 原片全送</td>
+                                <td><span class="status-badge status-paid">启用</span></td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>高端档</td>
+                                <td>¥599</td>
+                                <td>全棚开放 / 精修30张 / RAW全送 / 花絮视频</td>
+                                <td><span class="status-badge status-paid">启用</span></td>
+                                <td>
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="section-tabs" id="settingsSection">
+                <div class="page-header">
+                    <h1 class="page-title">系统设置</h1>
+                </div>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">基本信息</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="form-group">
+                            <label class="form-label">工作室名称</label>
+                            <input type="text" class="form-input" value="顺息">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系电话</label>
+                            <input type="text" class="form-input" placeholder="输入联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系邮箱</label>
+                            <input type="email" class="form-input" value="contact@shunxi.photo">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">工作室地址</label>
+                            <input type="text" class="form-input" placeholder="输入地址">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">微信收款码</label>
+                            <input type="file" accept="image/*" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">支付宝收款码</label>
+                            <input type="file" accept="image/*" class="form-input">
+                        </div>
+                        <button class="btn btn-primary">保存设置</button>
+                    </div>
+                </div>
+
+                <div class="data-card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">修改密码</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="form-group">
+                            <label class="form-label">当前密码</label>
+                            <input type="password" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">新密码</label>
+                            <input type="password" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">确认新密码</label>
+                            <input type="password" class="form-input">
+                        </div>
+                        <button class="btn btn-primary">修改密码</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Demo data
+        const bookings = [
+            { id: 1, name: '张三', phone: '138****1234', email: 'test@test.com', package: '进阶档', price: 299, ip: '原神', studio: '2个棚', duration: '4小时', status: 'paid', date: '2026-04-26 10:30' },
+            { id: 2, name: '李四', phone: '139****5678', email: 'test2@test.com', package: '高端档', price: 599, ip: '王者荣耀', studio: '全部', duration: '8小时', status: 'pending', date: '2026-04-26 09:15' },
+            { id: 3, name: '王五', phone: '137****9012', email: 'test3@test.com', package: '基础档', price: 199, ip: '第五人格', studio: '1个棚', duration: '2小时', status: 'completed', date: '2026-04-25 16:45' },
+        ];
+
+        const images = [
+            { id: 1, url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400', ip: '王者荣耀', type: 'gallery' },
+            { id: 2, url: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400', ip: '原神', type: 'gallery' },
+            { id: 3, url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400', ip: '第五人格', type: 'gallery' },
+            { id: 4, url: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400', ip: '鸣潮', type: 'gallery' },
+        ];
+
+        // Login handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Demo credentials: admin / admin123
+            if (username === 'admin' && password === 'admin123') {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashboardSection').classList.add('active');
+                localStorage.setItem('adminLoggedIn', 'true');
+                renderDashboard();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+
+        // Check login state
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('dashboardSection').classList.add('active');
+            renderDashboard();
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('adminLoggedIn');
+            location.reload();
+        });
+
+        // Navigation
+        document.querySelectorAll('.sidebar-nav a[data-section]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-tabs').forEach(s => s.classList.remove('active'));
+                document.getElementById(section + 'Section').classList.add('active');
+            });
+        });
+
+        // Render dashboard
+        function renderDashboard() {
+            renderRecentBookings();
+            renderAllBookings();
+            renderImages();
+        }
+
+        function renderRecentBookings() {
+            const tbody = document.getElementById('recentBookings');
+            tbody.innerHTML = bookings.slice(0, 5).map(b => `
+                <tr>
+                    <td>${b.name}</td>
+                    <td>${b.package}</td>
+                    <td>${b.ip}</td>
+                    <td>${b.date}</td>
+                    <td><span class="status-badge status-${b.status}">${getStatusText(b.status)}</span></td>
+                    <td><button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">详情</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAllBookings() {
+            const tbody = document.getElementById('allBookings');
+            tbody.innerHTML = bookings.map(b => `
+                <tr>
+                    <td>#${b.id}</td>
+                    <td>${b.name}</td>
+                    <td>${b.phone}<br>${b.email}</td>
+                    <td>${b.package} (¥${b.price})</td>
+                    <td>${b.ip}</td>
+                    <td>${b.studio}</td>
+                    <td>${b.duration}</td>
+                    <td><span class="status-badge status-${b.status}">${getStatusText(b.status)}</span></td>
+                    <td>${b.date}</td>
+                    <td>
+                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
+                        <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderImages() {
+            const gallery = document.getElementById('imageGallery');
+            gallery.innerHTML = images.map(img => `
+                <div class="image-item">
+                    <img src="${img.url}" alt="">
+                    <div class="image-overlay">
+                        <button class="image-btn">编辑</button>
+                        <button class="image-btn delete">删除</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                pending: '待付款',
+                paid: '已付款',
+                completed: '已完成'
+            };
+            return texts[status] || status;
+        }
+
+        // Upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--accent)';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = 'var(--border)';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--border)';
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            console.log('Selected files:', files);
+            // In real implementation, would upload to server
+            alert(`已选择 ${files.length} 个文件。实际部署时将上传到服务器。`);
+        }
+
+        document.getElementById('uploadBtn').addEventListener('click', () => {
+            const ip = document.getElementById('imageIP').value;
+            const type = document.getElementById('imageType').value;
+            if (!ip) {
+                alert('请选择IP分类');
+                return;
+            }
+            if (fileInput.files.length === 0) {
+                alert('请选择要上传的图片');
+                return;
+            }
+            // Upload logic would go here
+            alert(`上传功能需要后端服务器支持。\n选择的IP: ${ip}\n类型: ${type}\n文件数: ${fileInput.files.length}`);
+        });
+    </script>
+</body>
+</html>
