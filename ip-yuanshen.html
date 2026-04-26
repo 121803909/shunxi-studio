@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神 - 顺息COSPLAY摄影工作室</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #c9a962;
+            --border: #2a2a2a;
+            --ip-color: #4fc3f7;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,10,0.98); backdrop-filter: blur(10px); }
+        .logo { font-family: 'Noto Serif SC', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 0.2em; color: var(--text-primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .ip-header { padding: 10rem 4rem 4rem; background: linear-gradient(to bottom, rgba(79,195,247,0.1), transparent); border-bottom: 1px solid var(--border); }
+        .breadcrumb { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem; }
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .ip-title { font-family: 'Noto Serif SC', serif; font-size: 4rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, var(--ip-color), #81d4fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .ip-stats { display: flex; gap: 3rem; color: var(--text-secondary); font-size: 0.9rem; }
+        .ip-stats span { color: var(--accent); font-size: 1.5rem; font-weight: 600; display: block; margin-bottom: 0.3rem; }
+        .gallery-section { padding: 4rem; }
+        .masonry-grid { column-count: 3; column-gap: 1.5rem; max-width: 1600px; margin: 0 auto; }
+        .photo-card { break-inside: avoid; margin-bottom: 1.5rem; position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; transition: transform 0.3s ease; }
+        .photo-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(79,195,247,0.2); }
+        .photo-card img { width: 100%; display: block; transition: filter 0.3s ease; }
+        .photo-card:hover img { filter: brightness(0.7); }
+        .photo-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(to top, rgba(10,10,10,0.95), transparent); transform: translateY(100%); opacity: 0; transition: all 0.4s ease; }
+        .photo-card:hover .photo-info { transform: translateY(0); opacity: 1; }
+        .coser-name { font-family: 'Noto Serif SC', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem; }
+        .photo-params { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.8; }
+        .photo-params strong { color: var(--text-primary); }
+        .photo-price { position: absolute; top: 1rem; right: 1rem; background: var(--accent); color: var(--bg-primary); padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 4px; opacity: 0; transition: opacity 0.3s ease; }
+        .photo-card:hover .photo-price { opacity: 1; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.92); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; overflow-y: auto; padding: 2rem; }
+        .modal-overlay:target { opacity: 1; visibility: visible; }
+        .modal-content { max-width: 1400px; margin: 4rem auto; background: var(--bg-secondary); border-radius: 12px; overflow: hidden; }
+        .modal-header { padding: 2rem 3rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-family: 'Noto Serif SC', serif; font-size: 2.5rem; font-weight: 700; color: var(--ip-color); }
+        .modal-subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
+        .modal-close { width: 40px; height: 40px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--text-primary); font-size: 1.5rem; }
+        .modal-close:hover { background: var(--accent); color: var(--bg-primary); }
+        .modal-gallery { padding: 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .modal-photo { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 3/4; }
+        .modal-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .modal-photo:hover img { transform: scale(1.05); }
+        .modal-photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); opacity: 0; transition: opacity 0.3s ease; }
+        .modal-photo:hover .modal-photo-overlay { opacity: 1; }
+        .modal-photo-info { font-size: 0.75rem; color: var(--text-secondary); }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; margin-top: 2rem; }
+        @media (max-width: 1200px) { .masonry-grid, .modal-gallery { column-count: 2; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); } }
+        @media (max-width: 768px) { .nav { padding: 1rem 2rem; } .nav-links { display: none; } .ip-header { padding: 8rem 2rem 3rem; } .ip-title { font-size: 2.5rem; } .gallery-section { padding: 2rem; } .masonry-grid { column-count: 1; } .modal-header { padding: 1.5rem 2rem; } .modal-title { font-size: 1.8rem; } .modal-gallery { padding: 2rem; grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="logo">顺息</a>
+        <ul class="nav-links">
+            <li><a href="index.html#home">首页</a></li>
+            <li><a href="index.html#gallery">作品</a></li>
+            <li><a href="index.html#pricing">报价</a></li>
+            <li><a href="index.html#about">关于</a></li>
+        </ul>
+    </nav>
+
+    <header class="ip-header">
+        <div class="breadcrumb">
+            <a href="index.html">首页</a> / <a href="index.html#gallery">作品</a> / 原神
+        </div>
+        <h1 class="ip-title">原神</h1>
+        <div class="ip-stats">
+            <div><span>15</span>作品数量</div>
+            <div><span>10</span>COS老师</div>
+            <div><span>¥199</span>起拍价</div>
+        </div>
+    </header>
+
+    <section class="gallery-section">
+        <div class="masonry-grid">
+            <a href="#coser-1" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥299套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">风行者</h3>
+                    <div class="photo-params"><strong>相机:</strong> Sony A7M4<br><strong>镜头:</strong> 85mm f/1.4</div>
+                </div>
+            </a>
+            <a href="#coser-2" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥599套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">雷电</h3>
+                    <div class="photo-params"><strong>相机:</strong> Canon R5<br><strong>镜头:</strong> 50mm f/1.2</div>
+                </div>
+            </a>
+            <a href="#coser-3" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥199套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">甘雨</h3>
+                    <div class="photo-params"><strong>相机:</strong> Nikon Z8<br><strong>镜头:</strong> 70-200mm f/2.8</div>
+                </div>
+            </a>
+            <a href="#coser-4" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥299套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">胡桃</h3>
+                    <div class="photo-params"><strong>相机:</strong> Sony A7R5<br><strong>镜头:</strong> 35mm f/1.4</div>
+                </div>
+            </a>
+            <a href="#coser-5" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥599套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">刻晴</h3>
+                    <div class="photo-params"><strong>相机:</strong> Canon R6 II<br><strong>镜头:</strong> 24-70mm f/2.8</div>
+                </div>
+            </a>
+            <a href="#coser-1" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥199套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">神里</h3>
+                    <div class="photo-params"><strong>相机:</strong> Sony A7M4<br><strong>镜头:</strong> 85mm f/1.4</div>
+                </div>
+            </a>
+            <a href="#coser-2" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥299套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">钟离</h3>
+                    <div class="photo-params"><strong>相机:</strong> Canon R5<br><strong>镜头:</strong> 50mm f/1.2</div>
+                </div>
+            </a>
+            <a href="#coser-3" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥599套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">宵宫</h3>
+                    <div class="photo-params"><strong>相机:</strong> Nikon Z8<br><strong>镜头:</strong> 85mm f/1.4</div>
+                </div>
+            </a>
+            <a href="#coser-4" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥199套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">温迪</h3>
+                    <div class="photo-params"><strong>相机:</strong> Sony A7R5<br><strong>镜头:</strong> 135mm f/1.8</div>
+                </div>
+            </a>
+            <a href="#coser-5" class="photo-card">
+                <img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=800&q=80" alt="原神COS">
+                <div class="photo-price">¥299套餐</div>
+                <div class="photo-info">
+                    <h3 class="coser-name">可莉</h3>
+                    <div class="photo-params"><strong>相机:</strong> Canon R6 II<br><strong>镜头:</strong> 35mm f/1.4</div>
+                </div>
+            </a>
+        </div>
+        <a href="index.html#gallery" class="back-btn">← 返回作品列表</a>
+    </section>
+
+    <!-- Modals -->
+    <div id="coser-1" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title">风行者</h2>
+                    <p class="modal-subtitle">原神 · COS作品集 · ¥299套餐起</p>
+                </div>
+                <a href="#" class="modal-close">×</a>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2.8 · ISO 400</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2 · ISO 100</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 70-200mm f/4 · ISO 800</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.4 · ISO 200</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 35mm f/2 · ISO 320</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 24-70mm f/3.5 · ISO 640</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.8 · ISO 160</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 85mm f/2.2 · ISO 250</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 135mm f/2.5 · ISO 500</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=600&q=80" alt="风行者COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 35mm f/1.6 · ISO 80</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="coser-2" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title">雷电</h2>
+                    <p class="modal-subtitle">原神 · COS作品集 · ¥599套餐</p>
+                </div>
+                <a href="#" class="modal-close">×</a>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.4 · ISO 200</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.8 · ISO 160</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2.8 · ISO 400</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 70-200mm f/4 · ISO 800</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2 · ISO 100</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 35mm f/2 · ISO 320</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 24-70mm f/3.5 · ISO 640</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 85mm f/2.2 · ISO 250</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 135mm f/2.5 · ISO 500</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=600&q=80" alt="雷电COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 35mm f/1.6 · ISO 80</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="coser-3" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title">甘雨</h2>
+                    <p class="modal-subtitle">原神 · COS作品集 · ¥199套餐起</p>
+                </div>
+                <a href="#" class="modal-close">×</a>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 70-200mm f/4 · ISO 800</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 85mm f/2.2 · ISO 250</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2.8 · ISO 400</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.4 · ISO 200</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2 · ISO 100</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 35mm f/2 · ISO 320</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 24-70mm f/3.5 · ISO 640</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.8 · ISO 160</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 135mm f/2.5 · ISO 500</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=600&q=80" alt="甘雨COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 35mm f/1.6 · ISO 80</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="coser-4" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title">胡桃</h2>
+                    <p class="modal-subtitle">原神 · COS作品集 · ¥299套餐</p>
+                </div>
+                <a href="#" class="modal-close">×</a>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 35mm f/2 · ISO 320</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 135mm f/2.5 · ISO 500</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2.8 · ISO 400</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.4 · ISO 200</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 70-200mm f/4 · ISO 800</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2 · ISO 100</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 24-70mm f/3.5 · ISO 640</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.8 · ISO 160</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 85mm f/2.2 · ISO 250</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=600&q=80" alt="胡桃COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 35mm f/1.6 · ISO 80</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="coser-5" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title">刻晴</h2>
+                    <p class="modal-subtitle">原神 · COS作品集 · ¥599套餐</p>
+                </div>
+                <a href="#" class="modal-close">×</a>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 24-70mm f/3.5 · ISO 640</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R6 II · 35mm f/1.6 · ISO 80</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2.8 · ISO 400</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.4 · ISO 200</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 70-200mm f/4 · ISO 800</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7M4 · 85mm f/2 · ISO 100</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 35mm f/2 · ISO 320</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Canon R5 · 50mm f/1.8 · ISO 160</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Nikon Z8 · 85mm f/2.2 · ISO 250</div></div></div>
+                <div class="modal-photo"><img src="https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=600&q=80" alt="刻晴COS"><div class="modal-photo-overlay"><div class="modal-photo-info">Sony A7R5 · 135mm f/2.5 · ISO 500</div></div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
