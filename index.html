@@ -41,11 +41,7 @@
         }
 
         /* ===== 樱花飘落动画 ===== */
-        .sakura {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-        }
+        .sakura { position: fixed; pointer-events: none; z-index: 9999; }
         .sakura-petal {
             position: absolute;
             width: 12px; height: 12px;
@@ -71,9 +67,7 @@
             border-bottom: 1px solid rgba(168, 85, 247, 0.1);
             transition: all 0.3s ease;
         }
-        .nav.scrolled {
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
-        }
+        .nav.scrolled { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08); }
         .logo {
             font-family: 'Quicksand', sans-serif;
             font-size: 1.8rem; font-weight: 700;
@@ -84,9 +78,7 @@
             text-decoration: none;
             letter-spacing: 0.05em;
         }
-        .nav-links {
-            display: flex; gap: 2rem; list-style: none;
-        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -200,6 +192,7 @@
             box-shadow: 0 6px 25px rgba(168, 85, 247, 0.35);
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
         .btn-primary:hover {
             transform: translateY(-3px) scale(1.02);
@@ -216,6 +209,8 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);
             border: 2px solid rgba(168, 85, 247, 0.2);
+            display: inline-block;
+            cursor: pointer;
         }
         .btn-secondary:hover {
             transform: translateY(-3px);
@@ -235,9 +230,7 @@
             position: relative;
             z-index: 10;
         }
-        .stat-item {
-            text-align: center;
-        }
+        .stat-item { text-align: center; }
         .stat-number {
             font-size: 2.5rem;
             font-weight: 900;
@@ -252,14 +245,14 @@
             margin-top: 0.3rem;
         }
 
-        /* ===== IP 分类区域 ===== */
-        .ip-section {
-            padding: 6rem 2rem;
+        /* ===== 精选作品轮播 ===== */
+        .featured-section {
+            padding: 5rem 2rem;
             background: var(--bg-secondary);
         }
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
         .section-tag {
             display: inline-block;
@@ -272,16 +265,74 @@
             margin-bottom: 1rem;
         }
         .section-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
         .section-desc {
             color: var(--text-secondary);
             font-size: 1.1rem;
-            max-width: 600px;
+        }
+        .featured-slider {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0 2rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+        .featured-slider::-webkit-scrollbar { height: 8px; }
+        .featured-slider::-webkit-scrollbar-track { background: rgba(168, 85, 247, 0.05); border-radius: 4px; }
+        .featured-slider::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 4px; }
+        .featured-card {
+            flex: 0 0 350px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+        }
+        .featured-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow-hover);
+        }
+        .featured-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .featured-card:hover .featured-image { transform: scale(1.05); }
+        .featured-info { padding: 1.5rem; }
+        .featured-ip {
+            display: inline-block;
+            background: rgba(255, 107, 157, 0.1);
+            color: var(--accent-pink);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .featured-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+        .featured-cosplayer {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== IP 分类区域 ===== */
+        .ip-section {
+            padding: 5rem 2rem;
+            background: white;
         }
         .ip-grid {
             display: grid;
@@ -291,12 +342,14 @@
             margin: 0 auto;
         }
         .ip-card {
-            background: white;
+            background: var(--bg-secondary);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--card-shadow);
             transition: all 0.4s ease;
             position: relative;
+            text-decoration: none;
+            display: block;
         }
         .ip-card:hover {
             transform: translateY(-10px);
@@ -308,15 +361,12 @@
             object-fit: cover;
             transition: transform 0.4s ease;
         }
-        .ip-card:hover .ip-image {
-            transform: scale(1.05);
-        }
+        .ip-card:hover .ip-image { transform: scale(1.05); }
         .ip-overlay {
             position: absolute;
             bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(255,255,255,0.98) 0%, transparent 100%);
             padding: 2rem 1.5rem 1.5rem;
-            transition: all 0.3s ease;
         }
         .ip-name {
             font-size: 1.3rem;
@@ -339,9 +389,61 @@
             font-weight: 600;
         }
 
+        /* ===== 服务流程 ===== */
+        .process-section {
+            padding: 5rem 2rem;
+            background: var(--gradient-soft);
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+        .process-icon {
+            width: 80px; height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+        .process-number {
+            position: absolute;
+            top: -10px; right: -10px;
+            width: 30px; height: 30px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .process-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .process-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
         /* ===== 定价区域 ===== */
         .pricing-section {
-            padding: 6rem 2rem;
+            padding: 5rem 2rem;
             background: white;
         }
         .pricing-grid {
@@ -421,8 +523,8 @@
 
         /* ===== 客户评价 ===== */
         .testimonials {
-            padding: 6rem 2rem;
-            background: var(--gradient-soft);
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
         }
         .testimonial-grid {
             display: grid;
@@ -471,10 +573,14 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
+        .testimonial-rating {
+            color: var(--accent-yellow);
+            margin-top: 0.3rem;
+        }
 
         /* ===== 预约区域 ===== */
         .booking-section {
-            padding: 6rem 2rem;
+            padding: 5rem 2rem;
             background: white;
         }
         .booking-container {
@@ -574,6 +680,7 @@
             .stat-number { font-size: 2rem; }
             .section-title { font-size: 2rem; }
             .booking-container { padding: 2rem; }
+            .featured-card { flex: 0 0 280px; }
         }
 
         /* ===== 动画 ===== */
@@ -596,6 +703,7 @@
     <nav class="nav" id="nav">
         <a href="#" class="logo">✨ 顺息</a>
         <ul class="nav-links">
+            <li><a href="#featured">精选作品</a></li>
             <li><a href="#ip">游戏IP</a></li>
             <li><a href="#pricing">套餐价格</a></li>
             <li><a href="#testimonials">客户评价</a></li>
@@ -612,7 +720,7 @@
             <p class="hero-subtitle">专注王者荣耀、原神、第五人格等游戏角色摄影<br>专业灯光设备 × 精修出片 × 沉浸式拍摄体验</p>
             <div class="hero-buttons">
                 <a href="#booking" class="btn-primary">预约拍摄 📸</a>
-                <a href="#ip" class="btn-secondary">浏览作品 🎨</a>
+                <a href="#featured" class="btn-secondary">浏览作品 🎨</a>
             </div>
         </div>
     </section>
@@ -637,6 +745,65 @@
         </div>
     </section>
 
+    <!-- 精选作品 -->
+    <section class="featured-section" id="featured">
+        <div class="section-header">
+            <div class="section-tag">精选作品</div>
+            <h2 class="section-title">近期精彩成片</h2>
+            <p class="section-desc">每一张都是用心之作</p>
+        </div>
+        <div class="featured-slider">
+            <div class="featured-card">
+                <img src="https://images.unsplash.com/photo-1605812821743-62c827a5e6d5?w=600&h=480&fit=crop" alt="王者荣耀-貂蝉" class="featured-image">
+                <div class="featured-info">
+                    <div class="featured-ip">王者荣耀</div>
+                    <div class="featured-title">貂蝉 · 绝世舞姬</div>
+                    <div class="featured-cosplayer">COS: 小樱</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <img src="https://images.unsplash.com/photo-1531746020792-e9b4b0e0c0a4?w=600&h=480&fit=crop" alt="原神-甘雨" class="featured-image">
+                <div class="featured-info">
+                    <div class="featured-ip">原神</div>
+                    <div class="featured-title">甘雨 · 循循守月</div>
+                    <div class="featured-cosplayer">COS: 月见</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042a21780?w=600&h=480&fit=crop" alt="第五人格-红蝶" class="featured-image">
+                <div class="featured-info">
+                    <div class="featured-ip">第五人格</div>
+                    <div class="featured-title">红蝶 · 美智子</div>
+                    <div class="featured-cosplayer">COS: 夜鸦</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <img src="https://images.unsplash.com/photo-1534436552773-446765d28da5?w=600&h=480&fit=crop" alt="鸣潮-长离" class="featured-image">
+                <div class="featured-info">
+                    <div class="featured-ip">鸣潮</div>
+                    <div class="featured-title">长离 · 焚焰之翼</div>
+                    <div class="featured-cosplayer">COS: 星羽</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <img src="https://images.unsplash.com/photo-1507003218286-6da4e9c7b99e?w=600&h=480&fit=crop" alt="无期迷途-海拉" class="featured-image">
+                <div class="featured-info">
+                    <div class="featured-ip">无期迷途</div>
+                    <div class="featured-title">海拉 · 深渊之眼</div>
+                    <div class="featured-cosplayer">COS: 暗夜</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <img src="https://images.unsplash.com/photo-1542751371-6a6c5d0c7ab7?w=600&h=480&fit=crop" alt="王者荣耀-李白" class="featured-image">
+                <div class="featured-info">
+                    <div class="featured-ip">王者荣耀</div>
+                    <div class="featured-title">李白 · 凤求凰</div>
+                    <div class="featured-cosplayer">COS: 剑心</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- IP分类 -->
     <section class="ip-section" id="ip">
         <div class="section-header">
@@ -646,7 +813,7 @@
         </div>
         <div class="ip-grid">
             <a href="ip-wangzhe.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1542751371-6a6c5d0c7ab7?w=600" alt="王者荣耀" class="ip-image">
+                <img src="https://images.unsplash.com/photo-1542751371-6a6c5d0c7ab7?w=600&h=400&fit=crop" alt="王者荣耀" class="ip-image">
                 <div class="ip-tag">热门</div>
                 <div class="ip-overlay">
                     <div class="ip-name">王者荣耀</div>
@@ -654,14 +821,14 @@
                 </div>
             </a>
             <a href="ip-diwu.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042a21780?w=600" alt="第五人格" class="ip-image">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042a21780?w=600&h=400&fit=crop" alt="第五人格" class="ip-image">
                 <div class="ip-overlay">
                     <div class="ip-name">第五人格</div>
                     <div class="ip-count">80+ 哥特风作品</div>
                 </div>
             </a>
             <a href="ip-mingchao.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1534436552773-446765d28da5?w=600" alt="鸣潮" class="ip-image">
+                <img src="https://images.unsplash.com/photo-1534436552773-446765d28da5?w=600&h=400&fit=crop" alt="鸣潮" class="ip-image">
                 <div class="ip-tag">新作</div>
                 <div class="ip-overlay">
                     <div class="ip-name">鸣潮</div>
@@ -669,19 +836,49 @@
                 </div>
             </a>
             <a href="ip-yuanshen.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1511512578016-4978c4f1c8f7?w=600" alt="原神" class="ip-image">
+                <img src="https://images.unsplash.com/photo-1511512578016-4978c4f1c8f7?w=600&h=400&fit=crop" alt="原神" class="ip-image">
                 <div class="ip-overlay">
                     <div class="ip-name">原神</div>
                     <div class="ip-count">100+ 奇幻风作品</div>
                 </div>
             </a>
             <a href="ip-wuqi.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1507003218286-6da4e9c7b99e?w=600" alt="无期迷途" class="ip-image">
+                <img src="https://images.unsplash.com/photo-1507003218286-6da4e9c7b99e?w=600&h=400&fit=crop" alt="无期迷途" class="ip-image">
                 <div class="ip-overlay">
                     <div class="ip-name">无期迷途</div>
                     <div class="ip-count">60+ 暗黑风作品</div>
                 </div>
             </a>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section class="process-section">
+        <div class="section-header">
+            <div class="section-tag">服务流程</div>
+            <h2 class="section-title">简单四步，开启拍摄</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step fade-up">
+                <div class="process-icon">💬<span class="process-number">1</span></div>
+                <div class="process-title">咨询预约</div>
+                <div class="process-desc">微信/电话沟通，确认角色与档期</div>
+            </div>
+            <div class="process-step fade-up">
+                <div class="process-icon">📝<span class="process-number">2</span></div>
+                <div class="process-title">方案定制</div>
+                <div class="process-desc">根据角色设计灯光、场景、道具</div>
+            </div>
+            <div class="process-step fade-up">
+                <div class="process-icon">📸<span class="process-number">3</span></div>
+                <div class="process-title">现场拍摄</div>
+                <div class="process-desc">专业设备+指导，沉浸式拍摄体验</div>
+            </div>
+            <div class="process-step fade-up">
+                <div class="process-icon">✨<span class="process-number">4</span></div>
+                <div class="process-title">精修交付</div>
+                <div class="process-desc">7天内精修完成，在线选片下载</div>
+            </div>
         </div>
     </section>
 
@@ -702,7 +899,7 @@
                     <li>基础灯光设备</li>
                     <li>在线选片服务</li>
                 </ul>
-                <a href="#booking" class="btn-secondary" style="display:inline-block;">选择套餐</a>
+                <a href="#booking" class="btn-secondary" style="width:100%;">选择套餐</a>
             </div>
             <div class="pricing-card popular fade-up">
                 <div class="pricing-name">进阶档</div>
@@ -714,7 +911,7 @@
                     <li>多场景切换</li>
                     <li>在线选片服务</li>
                 </ul>
-                <a href="#booking" class="btn-primary" style="display:inline-block;">选择套餐</a>
+                <a href="#booking" class="btn-primary" style="width:100%;">选择套餐</a>
             </div>
             <div class="pricing-card fade-up">
                 <div class="pricing-name">高端档</div>
@@ -727,7 +924,7 @@
                     <li>专属化妆师</li>
                     <li>赠送相册一本</li>
                 </ul>
-                <a href="#booking" class="btn-secondary" style="display:inline-block;">选择套餐</a>
+                <a href="#booking" class="btn-secondary" style="width:100%;">选择套餐</a>
             </div>
         </div>
     </section>
@@ -746,6 +943,7 @@
                     <div>
                         <div class="testimonial-name">小樱</div>
                         <div class="testimonial-role">王者荣耀 · 貂蝉</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
             </div>
@@ -756,6 +954,7 @@
                     <div>
                         <div class="testimonial-name">月见</div>
                         <div class="testimonial-role">原神 · 甘雨</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
             </div>
@@ -766,6 +965,7 @@
                     <div>
                         <div class="testimonial-name">夜鸦</div>
                         <div class="testimonial-role">第五人格 · 红蝶</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
             </div>
@@ -788,6 +988,10 @@
                 <div class="form-group">
                     <label class="form-label">手机号码 📱</label>
                     <input type="tel" class="form-input" placeholder="请输入手机号码" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">微信号 💬</label>
+                    <input type="text" class="form-input" placeholder="方便我们联系你">
                 </div>
                 <div class="form-group">
                     <label class="form-label">选择游戏IP 🎮</label>
@@ -823,10 +1027,10 @@
         <div class="footer-logo">✨ 顺息 COSPLAY</div>
         <p class="footer-text">专注游戏角色摄影，让每一个次元的灵魂被镜头捕捉</p>
         <div class="footer-social">
-            <a href="#" class="social-btn">📱</a>
-            <a href="#" class="social-btn">💬</a>
-            <a href="#" class="social-btn">📷</a>
-            <a href="#" class="social-btn">🐦</a>
+            <a href="#" class="social-btn" title="微信">📱</a>
+            <a href="#" class="social-btn" title="QQ">💬</a>
+            <a href="#" class="social-btn" title="微博">📷</a>
+            <a href="#" class="social-btn" title="B站">🎬</a>
         </div>
         <p class="footer-copyright">© 2026 顺息COSPLAY摄影工作室 · 沪ICP备XXXXXXXX号</p>
     </footer>
