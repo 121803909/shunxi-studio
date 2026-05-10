@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,692 +6,1233 @@
     <title>顺息 ✨ COSPLAY摄影工作室 — 让次元照进现实</title>
     <meta name="description" content="顺息COSPLAY摄影工作室，专注王者荣耀、原神、第五人格等游戏角色摄影。专业灯光、精修出片、预约拍摄。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=M PLUS Rounded 1c:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        /* ============================================================
+           二次元动漫风格 — 顺息COSPLAY摄影工作室
+           ============================================================ */
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fc;
-            --bg-tertiary: #f0f4ff;
-            --text-primary: #2d3748;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --accent-pink: #ff6b9d;
-            --accent-purple: #a855f7;
-            --accent-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
-            --accent-yellow: #fbbf24;
-            --gradient-1: linear-gradient(135deg, #ff6b9d 0%, #a855f7 50%, #3b82f6 100%);
-            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            --gradient-soft: linear-gradient(135deg, #fce7f3 0%, #e0e7ff 50%, #dbeafe 100%);
-            --card-bg: #ffffff;
-            --card-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
-            --card-shadow-hover: 0 8px 40px rgba(168, 85, 247, 0.15);
-            --radius: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
+            --pink-v: #F5B0C2;      /* 主色柔和粉 */
+            --pink-d: #E891A0;      /* 柔和深粉 */
+            --pink-l: #FFD8E0;      /* 极淡粉 */
+            --pink-p: #FCE4EC;      /* 几乎白色 */
+            --purple-v: #CE93D8;   /* 柔和紫 */
+            --yellow-v: #FFE082;    /* 柔和黄 */
+            --yellow-l: #FFF8E1;    /* 浅黄 */
+            --accent: #F8B4C4;      /* 柔和强调 */
+            --bg-cream: #FFFBFC;    /* 极淡粉白 */
+            --bg-pink: #FFF0F3;     /* 淡粉 */
+            --text-d: #AD667E;      /* 柔和文字 */
+            --text-m: #C48B9D;      /* 中调文字 */
+            --card-white: #FFFFFF;
+            --card-bg: linear-gradient(160deg, #FFF5F8 0%, #FFD8E0 50%, #FCE4EC 100%);
+            --border-bold: 2.5px solid var(--pink-v);
+            --border-thick: 3px solid var(--pink-d);
+            --shadow-anime: 5px 5px 0 var(--pink-v), 6px 6px 0 rgba(0,0,0,0.12);
+            --shadow-anime-lg: 6px 6px 0 var(--pink-v), 8px 8px 0 rgba(0,0,0,0.1);
+            --radius-std: 20px;
+            --radius-lg: 28px;
         }
+
         html { scroll-behavior: smooth; }
+
+        /* ---- 像素爱心光标 ---- */
         body {
-            font-family: 'Noto Sans SC', 'Quicksand', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Noto Sans SC', 'M PLUS Rounded 1c', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-d);
             line-height: 1.7;
             overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF69B4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") 12 12, auto;
+        }
+        a, button, .btn-primary, .btn-secondary, .btn-studio, .filter-btn, .pricing-card, .ip-card, .studio-card, .process-step, .testimonial-card {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF1493' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") 12 12, pointer;
         }
 
-        /* ===== 樱花飘落动画 ===== */
-        .sakura { position: fixed; pointer-events: none; z-index: 9999; }
+        /* ---- 樱花飘落 ---- */
+        .sakura { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
         .sakura-petal {
             position: absolute;
-            width: 12px; height: 12px;
-            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
             border-radius: 50% 0 50% 0;
+            background: linear-gradient(135deg, #FFD8E0 0%, #F5B0C2 50%, #E891A0 100%);
+            box-shadow: 1px 1px 2px rgba(245,176,194,0.3);
             animation: sakuraFall linear infinite;
-            opacity: 0.7;
+            opacity: 0;
         }
         @keyframes sakuraFall {
-            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(110vh) rotate(720deg) translateX(100px); opacity: 0; }
+            0%   { transform: translateY(-5vh) rotate(0deg) translateX(0); opacity: 0; }
+            8%   { opacity: 0.85; }
+            92%  { opacity: 0.75; }
+            100% { transform: translateY(105vh) rotate(900deg) translateX(120px); opacity: 0; }
         }
 
-        /* ===== 导航栏 ===== */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
-            transition: all 0.3s ease;
-        }
-        .nav.scrolled { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08); }
-        .logo {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.8rem; font-weight: 700;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: 0.05em;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem; font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: var(--accent-purple);
-            background: rgba(168, 85, 247, 0.08);
-        }
-        .nav-cta {
-            background: var(--gradient-1);
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
-        }
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(168, 85, 247, 0.4);
-        }
-
-        /* ===== Hero 区域 ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: var(--gradient-soft);
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255,107,157,0.2) 0%, transparent 70%);
-            top: -200px; right: -200px;
-            animation: float 8s ease-in-out infinite;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-            bottom: -150px; left: -150px;
-            animation: float 10s ease-in-out infinite reverse;
+        /* ---- 星星装饰动画 ---- */
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.6); }
         }
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, 30px) scale(1.1); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+        @keyframes bounce-in {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(245,176,194,0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(245,176,194,0); }
+            100% { box-shadow: 0 0 0 0 rgba(245,176,194,0); }
+        }
+        @keyframes shine-sweep {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* ============================================================
+           导航栏
+           ============================================================ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 0.8rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(224, 247, 250, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: var(--border-bold);
+            box-shadow: 0 4px 16px rgba(245,176,194,0.15);
+        }
+        .nav.scrolled { box-shadow: 0 4px 20px rgba(245,176,194,0.25); }
+        .logo {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.8rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-d), var(--pink-v));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            filter: drop-shadow(2px 2px 0 rgba(245,176,194,0.4));
+        }
+        .nav-links { display: flex; gap: 0.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-d);
+            text-decoration: none;
+            font-size: 0.9rem; font-weight: 700;
+            padding: 0.45rem 1rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--pink-d);
+            border-color: var(--pink-v);
+            background: rgba(245,176,194,0.08);
+            transform: translateY(-2px);
+        }
+        /* 导航JK缎带装饰 */
+        .nav-cta {
+            background: linear-gradient(135deg, var(--pink-d) 0%, var(--pink-v) 100%);
+            color: white;
+            padding: 0.6rem 1.6rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 2.5px solid rgba(255,255,255,0.5);
+            box-shadow: 3px 3px 0 rgba(219,112,147,0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-cta::before {
+            content: '🎀';
+            margin-right: 6px;
+        }
+        .nav-cta:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 rgba(219,112,147,0.5);
+            background: linear-gradient(135deg, var(--pink-v) 0%, #AD1457 100%);
+        }
+
+        /* ============================================================
+           Hero 区域 — 全屏COSER轮播
+           ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            background: #0d0d1a;
+        }
+        /* ---- 弹幕层（B站风格）---- */
+        .hero-danmaku {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 4; pointer-events: none;
+            overflow: hidden;
+        }
+        .danmaku-bullet {
+            position: absolute; white-space: nowrap;
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans SC', sans-serif;
+            font-size: 1.05rem; font-weight: 700;
+            color: white; text-shadow:
+                1px 1px 0 rgba(0,0,0,0.8),
+                -1px -1px 0 rgba(0,0,0,0.6),
+                0 0 8px rgba(245,176,194,0.3);
+            opacity: 0;
+            will-change: transform;
+        }
+        .danmaku-bullet:nth-child(7n+1) { color: #F5B0C2; text-shadow: 1px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(245,176,194,0.5); }
+        .danmaku-bullet:nth-child(7n+2) { color: #FFE082; text-shadow: 1px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(255,224,130,0.4); }
+        .danmaku-bullet:nth-child(7n+3) { color: #E891A0; text-shadow: 1px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(232,145,160,0.4); }
+        .danmaku-bullet:nth-child(7n+4) { color: #FFD8E0; text-shadow: 1px 1px 0 rgba(0,0,0,0.8), 0 0 8px rgba(255,216,224,0.3); }
+        .danmaku-bullet:nth-child(7n+5) { color: #FFFFFF; }
+        .danmaku-bullet:nth-child(7n+6) { color: #FCE4EC; text-shadow: 1px 1px 0 rgba(0,0,0,0.8), 0 0 8px rgba(252,228,236,0.3); }
+        .danmaku-bullet:nth-child(7n+7) { color: #FFF8FA; text-shadow: 1px 1px 0 rgba(0,0,0,0.7), 0 0 6px rgba(255,248,250,0.3); }
+        @keyframes danmaku-fly {
+            0%   { transform: translateX(110vw); opacity: 0; }
+            5%   { opacity: 1; }
+            92%  { opacity: 1; }
+            100% { transform: translateX(-110vw); opacity: 0; }
+        }
+        .hero-slideshow {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 0;
+        }
+        .hero-slide {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover; background-position: center top;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+        .hero-slide.active { opacity: 1; }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg,
+                rgba(232,145,160,0.25) 0%,
+                rgba(232,145,160,0.15) 25%,
+                rgba(245,176,194,0.1) 55%,
+                rgba(232,145,160,0.55) 100%
+            );
+            z-index: 1;
+        }
+        /* 樱花遮角装饰 */
+        .hero-sakura-corner {
+            position: absolute;
+            bottom: 0; z-index: 2;
+            width: 100%; height: 200px;
+            background: linear-gradient(to top, rgba(255,245,249,0.9), transparent);
+            pointer-events: none;
         }
         .hero-content {
-            text-align: center;
-            z-index: 1;
-            padding: 2rem;
-            max-width: 800px;
+            text-align: center; z-index: 3;
+            padding: 2rem; max-width: 800px;
         }
         .hero-badge {
             display: inline-block;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
             padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            color: var(--accent-purple);
+            border-radius: 30px;
+            font-size: 0.9rem; color: rgba(255,255,255,0.95);
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);
+            border: 1.5px solid rgba(255,255,255,0.25);
             animation: bounce 2s ease-in-out infinite;
         }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
+        /* 标题描边文字 */
         .hero-title {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 4.2rem; font-weight: 900; line-height: 1.2;
+            margin-bottom: 1.5rem; color: #fff;
+            text-shadow:
+                3px 3px 0 var(--pink-d),
+                0 0 30px rgba(245,176,194,0.4),
+                0 0 60px rgba(219,112,147,0.2);
+            animation: bounce-in 0.8s ease-out;
         }
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
+            font-size: 1.25rem; color: rgba(255,255,255,0.88);
+            margin-bottom: 2.5rem; line-height: 1.8;
         }
         .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
         }
+        /* 按钮 — 动漫风格缎带 */
         .btn-primary {
-            background: var(--gradient-1);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
+            background: linear-gradient(135deg, var(--pink-v) 0%, var(--pink-d) 100%);
+            color: white; padding: 1rem 2.5rem;
+            border-radius: 30px; text-decoration: none;
+            font-weight: 700; font-size: 1rem;
+            border: 2.5px solid rgba(255,255,255,0.4);
+            box-shadow: 4px 4px 0 rgba(155,53,139,0.5), inset 0 1px 0 rgba(255,255,255,0.25);
             transition: all 0.3s ease;
-            box-shadow: 0 6px 25px rgba(168, 85, 247, 0.35);
-            border: none;
-            cursor: pointer;
             display: inline-block;
+            position: relative; overflow: hidden;
         }
+        .btn-primary::after {
+            content: '';
+            position: absolute; top: -50%; left: -75%;
+            width: 50%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.6s ease;
+        }
+        .btn-primary:hover::after { left: 125%; }
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.45);
+            transform: translate(-3px, -3px);
+            box-shadow: 7px 7px 0 rgba(155,53,139,0.5);
         }
         .btn-secondary {
-            background: white;
-            color: var(--accent-purple);
-            padding: 1rem 2.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            color: white; padding: 1rem 2.5rem;
+            border-radius: 30px; text-decoration: none;
+            font-weight: 700; font-size: 1rem;
+            border: 2px solid rgba(255,255,255,0.4);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);
-            border: 2px solid rgba(168, 85, 247, 0.2);
             display: inline-block;
-            cursor: pointer;
         }
         .btn-secondary:hover {
+            background: rgba(255,255,255,0.22);
             transform: translateY(-3px);
-            border-color: var(--accent-purple);
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
         }
+        .btn-studio {
+            background: linear-gradient(135deg, var(--pink-l) 0%, var(--pink-v) 100%);
+            color: white; padding: 1.1rem 2.8rem;
+            border-radius: 35px; text-decoration: none;
+            font-weight: 900; font-size: 1.05rem;
+            border: 2.5px solid rgba(255,255,255,0.5);
+            box-shadow: 4px 4px 0 rgba(219,112,147,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+            animation: pulse-ring 2s infinite;
+        }
+        .btn-studio:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 7px 7px 0 rgba(219,112,147,0.6);
+            animation: none;
+        }
+        /* 轮播指示器 */
+        .hero-indicators {
+            position: absolute; bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 10px; z-index: 5;
+        }
+        .hero-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer; transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 0;
+        }
+        .hero-dot.active {
+            background: var(--pink-v);
+            box-shadow: 0 0 12px rgba(245,176,194,0.7);
+            transform: scale(1.3);
+        }
+        .hero-dot:hover { background: rgba(255,255,255,0.7); }
 
-        /* ===== 统计数据 ===== */
+        /* ============================================================
+           统计数据条
+           ============================================================ */
         .stats {
-            background: white;
-            padding: 3rem 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            box-shadow: 0 -10px 40px rgba(168, 85, 247, 0.05);
-            position: relative;
-            z-index: 10;
+            background: linear-gradient(135deg, var(--pink-d), var(--pink-v));
+            padding: 2.5rem 2rem;
+            display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+            position: relative; overflow: hidden;
+            border-top: 3px solid rgba(255,255,255,0.3);
+            border-bottom: 3px solid rgba(255,255,255,0.3);
         }
+        /* 星星装饰 */
+        .stats::before, .stats::after {
+            content: '★';
+            position: absolute;
+            font-size: 3rem; color: rgba(255,255,255,0.15);
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        .stats::before { top: 10px; left: 5%; }
+        .stats::after { bottom: 10px; right: 5%; animation-delay: 1s; }
         .stat-item { text-align: center; }
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 2.5rem; font-weight: 900; color: #fff;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
         }
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-top: 0.3rem;
-        }
+        .stat-label { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-top: 0.2rem; font-weight: 500; }
 
-        /* ===== 精选作品轮播 ===== */
+        /* ============================================================
+           精选作品轮播
+           ============================================================ */
         .featured-section {
             padding: 5rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--bg-cream);
+            position: relative; overflow: hidden;
         }
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        /* 网点纹背景 */
+        .featured-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, var(--pink-l) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            pointer-events: none;
         }
+        .section-header { text-align: center; margin-bottom: 3rem; position: relative; z-index: 1; }
         .section-tag {
             display: inline-block;
-            background: rgba(168, 85, 247, 0.1);
-            color: var(--accent-purple);
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            background: linear-gradient(135deg, var(--pink-l), var(--pink-v));
+            color: white; padding: 0.4rem 1.3rem;
+            border-radius: 20px; font-size: 0.85rem; font-weight: 700;
             margin-bottom: 1rem;
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 3px 3px 0 rgba(219,112,147,0.3);
         }
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--text-primary);
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 2.6rem; font-weight: 900; color: var(--text-d);
             margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 0 rgba(245,176,194,0.2);
         }
-        .section-desc {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
+        .section-desc { color: var(--text-m); font-size: 1.05rem; }
+        /* 装饰星星 */
+        .section-title::before { content: '✨ '; }
+        .section-title::after { content: ' ✨'; }
+
         .featured-slider {
-            display: flex;
-            gap: 1.5rem;
-            overflow-x: auto;
-            padding: 1rem 0 2rem;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            max-width: 1400px;
-            margin: 0 auto;
+            display: flex; gap: 1.5rem; overflow-x: auto;
+            padding: 1rem 0 2rem; scroll-snap-type: x mandatory;
+            max-width: 1400px; margin: 0 auto;
         }
-        .featured-slider::-webkit-scrollbar { height: 8px; }
-        .featured-slider::-webkit-scrollbar-track { background: rgba(168, 85, 247, 0.05); border-radius: 4px; }
-        .featured-slider::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 4px; }
+        .featured-slider::-webkit-scrollbar { height: 6px; }
+        .featured-slider::-webkit-scrollbar-track { background: rgba(245,176,194,0.1); border-radius: 3px; }
+        .featured-slider::-webkit-scrollbar-thumb { background: var(--pink-v); border-radius: 3px; }
+
+        /* 卡片 — 动漫描边风格 */
         .featured-card {
-            flex: 0 0 350px;
-            scroll-snap-align: start;
-            background: white;
+            flex: 0 0 340px; scroll-snap-align: start;
+            background: var(--card-white);
             border-radius: var(--radius-lg);
+            border: var(--border-bold);
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s ease;
+            box-shadow: var(--shadow-anime);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .featured-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--card-shadow-hover);
+            transform: translate(-4px, -6px);
+            box-shadow: 8px 8px 0 var(--pink-v), 10px 10px 0 rgba(245,176,194,0.15);
         }
         .featured-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
+            width: 100%; height: 270px;
+            object-fit: cover; object-position: center top;
             transition: transform 0.4s ease;
         }
         .featured-card:hover .featured-image { transform: scale(1.05); }
-        .featured-info { padding: 1.5rem; }
+        .featured-info { padding: 1.2rem 1.5rem 1.5rem; }
         .featured-ip {
             display: inline-block;
-            background: rgba(255, 107, 157, 0.1);
-            color: var(--accent-pink);
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            background: linear-gradient(135deg, var(--pink-l), var(--pink-v));
+            color: white; padding: 0.25rem 0.8rem;
+            border-radius: 12px; font-size: 0.75rem; font-weight: 700;
             margin-bottom: 0.5rem;
+            border: 1.5px solid rgba(255,255,255,0.4);
         }
-        .featured-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.3rem;
-        }
-        .featured-cosplayer {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+        .featured-title { font-size: 1.15rem; font-weight: 700; color: var(--text-d); margin-bottom: 0.3rem; }
+        .featured-cosplayer { color: var(--text-m); font-size: 0.88rem; }
 
-        /* ===== IP 分类区域 ===== */
+        /* ============================================================
+           IP 分类区域
+           ============================================================ */
         .ip-section {
             padding: 5rem 2rem;
-            background: white;
+            background: linear-gradient(180deg, var(--bg-pink) 0%, var(--bg-cream) 100%);
+            position: relative; overflow: hidden;
         }
+        /* 樱花角落装饰 */
+        .ip-section::before {
+            content: '🌸';
+            position: absolute; top: 20px; left: 30px;
+            font-size: 3rem; opacity: 0.2;
+            animation: float 4s ease-in-out infinite;
+        }
+        .ip-section::after {
+            content: '🌸';
+            position: absolute; bottom: 20px; right: 30px;
+            font-size: 2.5rem; opacity: 0.2;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+        .polka-dots {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                radial-gradient(var(--pink-l) 2px, transparent 2px),
+                radial-gradient(var(--pink-v) 1.5px, transparent 1.5px);
+            background-size: 60px 60px, 40px 40px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .ip-filter {
+            display: flex; justify-content: center; gap: 0.8rem;
+            flex-wrap: wrap; margin-bottom: 2.5rem; position: relative; z-index: 1;
+        }
+        .filter-btn {
+            background: white;
+            border: var(--border-bold);
+            color: var(--text-d);
+            padding: 0.65rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.92rem; font-weight: 700;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            font-family: inherit;
+            box-shadow: 3px 3px 0 rgba(245,176,194,0.3);
+        }
+        .filter-btn:hover {
+            border-color: var(--pink-d);
+            color: var(--pink-d);
+            transform: translate(-2px, -3px);
+            box-shadow: 5px 5px 0 rgba(232,145,160,0.3);
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-d));
+            color: white; border-color: transparent;
+            box-shadow: 4px 4px 0 rgba(155,53,139,0.5);
+        }
+
         .ip-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
+            position: relative; z-index: 1;
         }
         .ip-card {
-            background: var(--bg-secondary);
+            background: var(--card-white);
             border-radius: var(--radius-lg);
+            border: var(--border-bold);
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s ease;
-            position: relative;
-            text-decoration: none;
-            display: block;
+            box-shadow: var(--shadow-anime);
+            transition: all 0.35s ease;
+            position: relative; text-decoration: none; display: block;
         }
         .ip-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--card-shadow-hover);
+            transform: translate(-4px, -6px);
+            box-shadow: 8px 8px 0 var(--pink-v);
         }
-        .ip-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .ip-card:hover .ip-image { transform: scale(1.05); }
+        .ip-image { width: 100%; height: 195px; object-fit: cover; }
         .ip-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(255,255,255,0.98) 0%, transparent 100%);
-            padding: 2rem 1.5rem 1.5rem;
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(255,255,255,0.97) 0%, transparent 100%);
+            padding: 2rem 1.2rem 1.2rem;
         }
-        .ip-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-        .ip-count {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+        .ip-name { font-size: 1.25rem; font-weight: 800; color: var(--text-d); margin-bottom: 0.3rem; }
+        .ip-count { color: var(--text-m); font-size: 0.88rem; }
         .ip-tag {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            background: var(--accent-pink);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            position: absolute; top: 0.8rem; right: 0.8rem;
+            background: var(--pink-v); color: white;
+            padding: 0.25rem 0.75rem; border-radius: 15px;
+            font-size: 0.72rem; font-weight: 700;
+            border: 1.5px solid rgba(255,255,255,0.4);
         }
 
-        /* ===== 服务流程 ===== */
+        /* ============================================================
+           服务流程
+           ============================================================ */
         .process-section {
             padding: 5rem 2rem;
-            background: var(--gradient-soft);
+            background: var(--bg-cream);
+            position: relative; overflow: hidden;
+        }
+        /* 彩虹分隔线 */
+        .process-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink-d), var(--pink-v), var(--pink-v), var(--blue-v), var(--yellow-v), var(--pink-d));
+            background-size: 200% 100%;
+            animation: shine-sweep 4s linear infinite;
         }
         .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
         }
-        .process-step {
-            text-align: center;
-            padding: 2rem;
-        }
+        .process-step { text-align: center; padding: 2rem; }
         .process-icon {
-            width: 80px; height: 80px;
-            background: white;
+            width: 88px; height: 88px;
+            background: var(--card-white);
+            border: var(--border-bold);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            box-shadow: var(--card-shadow);
-            position: relative;
-        }
-        .process-number {
-            position: absolute;
-            top: -10px; right: -10px;
-            width: 30px; height: 30px;
-            background: var(--gradient-1);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-        .process-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-        .process-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* ===== 定价区域 ===== */
-        .pricing-section {
-            padding: 5rem 2rem;
-            background: white;
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .pricing-card {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            text-align: center;
+            font-size: 2.2rem;
+            box-shadow: 4px 4px 0 rgba(245,176,194,0.35);
             position: relative;
             transition: all 0.4s ease;
-            border: 2px solid transparent;
+        }
+        .process-step:hover .process-icon {
+            transform: scale(1.1) rotate(8deg);
+            box-shadow: 6px 6px 0 rgba(245,176,194,0.5);
+        }
+        .process-number {
+            position: absolute; top: -8px; right: -8px;
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-v));
+            color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 900;
+            border: 2px solid white;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+        }
+        .process-title { font-size: 1.2rem; font-weight: 800; color: var(--text-d); margin-bottom: 0.5rem; }
+        .process-desc { color: var(--text-m); font-size: 0.92rem; }
+
+        /* ============================================================
+           定价区域 — 动漫角色立绘
+           ============================================================ */
+        .pricing-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #FCE4EC 0%, #FFB6C1 100%);
+            position: relative; overflow: hidden;
+        }
+        /* 背景图案 */
+        .pricing-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                radial-gradient(circle, var(--pink-l) 2px, transparent 2px),
+                radial-gradient(circle, var(--pink-v) 1px, transparent 1px);
+            background-size: 50px 50px, 25px 25px;
+            background-position: 0 0, 13px 13px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        /* 右侧动漫角色立绘区 */
+        .pricing-mascot {
+            position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+            width: 280px; height: 400px; z-index: 0; pointer-events: none;
+        }
+        /* CSS动漫角色（JK制服女生） */
+        .mascot-body {
+            position: absolute; bottom: 0; right: 30px;
+            width: 200px; height: 340px;
+            animation: float 5s ease-in-out infinite;
+        }
+        /* 头发 */
+        .mascot-hair {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 160px;
+            background: linear-gradient(180deg, #1a1a2e 0%, #2d2d4a 100%);
+            border-radius: 60px 60px 30px 30px;
+            z-index: 2;
+        }
+        .mascot-hair::before {
+            content: '';
+            position: absolute; top: 20px; left: -20px;
+            width: 40px; height: 100px;
+            background: #1a1a2e;
+            border-radius: 0 0 30px 30px;
+            transform: rotate(-10deg);
+        }
+        .mascot-hair::after {
+            content: '';
+            position: absolute; top: 20px; right: -20px;
+            width: 40px; height: 100px;
+            background: #1a1a2e;
+            border-radius: 0 0 30px 30px;
+            transform: rotate(10deg);
+        }
+        /* 脸部 */
+        .mascot-face {
+            position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
+            width: 90px; height: 90px;
+            background: #FFAB91;
+            border-radius: 50%;
+            z-index: 3;
+        }
+        /* 眼睛 */
+        .mascot-eye {
+            position: absolute; top: 25px;
+            width: 22px; height: 26px;
+            background: var(--pink-v);
+            border-radius: 50%;
+        }
+        .mascot-eye::after {
+            content: '';
+            position: absolute; top: 6px; left: 6px;
+            width: 8px; height: 8px;
+            background: white; border-radius: 50%;
+        }
+        .mascot-eye-l { left: 16px; }
+        .mascot-eye-r { right: 16px; }
+        /* 腮红 */
+        .mascot-blush {
+            position: absolute; top: 50px;
+            width: 18px; height: 10px;
+            background: rgba(245,176,194,0.4);
+            border-radius: 50%;
+        }
+        .mascot-blush-l { left: 8px; }
+        .mascot-blush-r { right: 8px; }
+        /* 嘴巴 */
+        .mascot-mouth {
+            position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+            width: 12px; height: 6px;
+            border-bottom: 3px solid #FF6B35;
+            border-radius: 0 0 10px 10px;
+        }
+        /* JK身体 */
+        .mascot-body-el {
+            position: absolute; top: 125px; left: 50%; transform: translateX(-50%);
+            width: 110px; height: 100px;
+            background: #1a1a2e;
+            border-radius: 10px 10px 0 0;
+            z-index: 2;
+        }
+        /* JK领结缎带 */
+        .mascot-ribbon {
+            position: absolute; top: 128px; left: 50%; transform: translateX(-50%);
+            width: 20px; height: 14px;
+            background: var(--pink-v);
+            z-index: 4;
+            border-radius: 0 0 4px 4px;
+        }
+        .mascot-ribbon::before, .mascot-ribbon::after {
+            content: '';
+            position: absolute; top: 2px;
+            width: 16px; height: 10px;
+            background: var(--pink-v);
+            border-radius: 4px;
+        }
+        .mascot-ribbon::before { left: -14px; }
+        .mascot-ribbon::after { right: -14px; }
+        /* JK短裙 */
+        .mascot-skirt {
+            position: absolute; top: 218px; left: 50%; transform: translateX(-50%);
+            width: 140px; height: 80px;
+            background: #1a1a2e;
+            clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+            z-index: 2;
+        }
+        /* 白袜子 */
+        .mascot-legs {
+            position: absolute; top: 290px; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 50px;
+            display: flex; justify-content: space-between;
+        }
+        .mascot-leg {
+            width: 28px; height: 50px;
+            background: white;
+            border-radius: 4px 4px 8px 8px;
+            border: 1.5px solid #ddd;
+        }
+        /* 对话气泡 */
+        .mascot-bubble {
+            position: absolute; top: 0; right: 0;
+            background: white;
+            border: 2.5px solid var(--pink-v);
+            border-radius: 20px 20px 4px 20px;
+            padding: 0.7rem 1rem;
+            font-size: 0.78rem; font-weight: 700; color: var(--text-d);
+            white-space: nowrap;
+            box-shadow: 3px 3px 0 rgba(245,176,194,0.3);
+            animation: bounce-in 0.6s ease-out;
+        }
+        .mascot-bubble::after {
+            content: '';
+            position: absolute; bottom: -12px; left: 16px;
+            border: 6px solid transparent;
+            border-top-color: var(--pink-v);
+        }
+        .mascot-bubble::before {
+            content: '';
+            position: absolute; bottom: -8px; left: 18px;
+            border: 5px solid transparent;
+            border-top-color: white;
+            z-index: 1;
+        }
+
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+            position: relative; z-index: 1;
+        }
+        .pricing-card {
+            background: var(--card-white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            border: var(--border-bold);
+            box-shadow: var(--shadow-anime);
+            transition: all 0.35s ease;
         }
         .pricing-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-purple);
-            box-shadow: var(--card-shadow-hover);
+            transform: translate(-4px, -6px);
+            box-shadow: 8px 8px 0 var(--pink-v);
         }
+        /* 漫画对话框样式角标 */
+        .pricing-card::before {
+            content: '';
+            position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border-radius: var(--radius-lg);
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-v)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .pricing-card:hover::before { opacity: 1; }
         .pricing-card.popular {
-            background: white;
-            border-color: var(--accent-purple);
+            background: linear-gradient(160deg, #FCE4EC, #FFE4EC);
+            border-color: var(--pink-v);
+            border-width: 3px;
+            box-shadow: 6px 6px 0 var(--pink-v), 10px 10px 0 rgba(245,176,194,0.15);
         }
-        .pricing-card.popular::before {
-            content: '🔥 最受欢迎';
-            position: absolute;
-            top: -12px; left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-1);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .pricing-card.popular::before { opacity: 0.3; }
+        .pricing-card.popular::after {
+            content: '🔥 人气之选';
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-v));
+            color: white; padding: 0.35rem 1.1rem;
+            border-radius: 20px; font-size: 0.78rem; font-weight: 700;
+            border: 2px solid white;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            white-space: nowrap;
         }
         .pricing-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.4rem; font-weight: 800; color: var(--text-d);
             margin-bottom: 0.5rem;
         }
         .pricing-price {
-            font-size: 3rem;
-            font-weight: 900;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 3rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-v));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1.5rem;
+            text-shadow: none;
         }
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
+        .pricing-price span { font-size: 1rem; font-weight: 500; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; }
         .pricing-features li {
-            padding: 0.6rem 0;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            padding: 0.55rem 0; color: var(--text-d); font-size: 0.95rem;
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
         }
         .pricing-features li::before {
-            content: '✓';
-            color: var(--accent-purple);
-            font-weight: bold;
+            content: '💖';
+            font-size: 0.9rem;
         }
 
-        /* ===== 客户评价 ===== */
+        /* ============================================================
+           客户评价 — 漫画对话框风格
+           ============================================================ */
         .testimonials {
             padding: 5rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--bg-pink);
         }
         .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 2rem; max-width: 1100px; margin: 0 auto;
         }
         .testimonial-card {
-            background: white;
+            background: var(--card-white);
             border-radius: var(--radius-lg);
             padding: 2rem;
-            box-shadow: var(--card-shadow);
-        }
-        .testimonial-text {
-            color: var(--text-primary);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            border: var(--border-bold);
+            box-shadow: var(--shadow-anime);
+            transition: all 0.35s ease;
             position: relative;
         }
+        .testimonial-card::after {
+            content: '';
+            position: absolute; bottom: -14px; left: 30px;
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 14px solid var(--pink-v);
+        }
+        .testimonial-card:hover {
+            transform: translate(-3px, -5px);
+            box-shadow: 7px 7px 0 var(--pink-v);
+        }
+        .testimonial-text {
+            color: var(--text-d); font-size: 1rem; line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding: 1rem;
+            background: var(--bg-pink);
+            border-radius: 16px;
+            border: 2px solid var(--pink-l);
+        }
         .testimonial-text::before {
-            content: '"';
-            font-size: 4rem;
-            color: var(--accent-pink);
-            opacity: 0.3;
-            position: absolute;
-            top: -1.5rem; left: -0.5rem;
-            font-family: serif;
+            content: '💬';
+            position: absolute; top: -14px; left: 14px;
+            font-size: 1.3rem;
+            background: white; border-radius: 50%;
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
         }
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
         .testimonial-avatar {
-            width: 50px; height: 50px;
-            border-radius: 50%;
+            width: 52px; height: 52px; border-radius: 50%;
             object-fit: cover;
+            border: 3px solid var(--pink-v);
+            box-shadow: 2px 2px 0 rgba(245,176,194,0.3);
         }
-        .testimonial-name {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .testimonial-role {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        .testimonial-rating {
-            color: var(--accent-yellow);
-            margin-top: 0.3rem;
-        }
+        .testimonial-name { font-weight: 700; color: var(--text-d); }
+        .testimonial-role { font-size: 0.82rem; color: var(--text-m); }
+        .testimonial-rating { color: var(--yellow-v); margin-top: 0.2rem; font-size: 0.9rem; }
 
-        /* ===== 预约区域 ===== */
+        /* ============================================================
+           白棚定制
+           ============================================================ */
+        .studio-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, var(--bg-cream) 0%, #FFE4EC 100%);
+            position: relative; overflow: hidden;
+        }
+        .studio-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem; max-width: 1100px; margin: 0 auto;
+        }
+        .studio-card {
+            background: var(--card-white);
+            border-radius: var(--radius-lg);
+            border: var(--border-bold);
+            overflow: hidden;
+            box-shadow: var(--shadow-anime);
+            transition: all 0.35s ease;
+            animation-delay: var(--delay, 0s);
+        }
+        .studio-card:hover {
+            transform: translate(-4px, -6px);
+            box-shadow: 8px 8px 0 var(--pink-v);
+        }
+        .studio-card-img { position: relative; height: 210px; overflow: hidden; }
+        .studio-card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            object-position: center top;
+            transition: transform 0.6s ease;
+        }
+        .studio-card-img::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(255,245,249,0.5), transparent);
+            pointer-events: none;
+        }
+        .studio-card:hover .studio-card-img img { transform: scale(1.08); }
+        .studio-badge {
+            position: absolute; top: 0.8rem; left: 0.8rem;
+            padding: 0.25rem 0.8rem; border-radius: 20px;
+            font-size: 0.78rem; font-weight: 700;
+            background: white; color: var(--pink-v);
+            border: 2px solid var(--pink-v);
+        }
+        .studio-badge.popular { background: linear-gradient(135deg, var(--pink-v), var(--pink-v)); color: white; border-color: transparent; }
+        .studio-badge.vip { background: linear-gradient(135deg, #FFD54F, #FFA500); color: white; border-color: transparent; }
+        .studio-card-body { padding: 1.3rem; }
+        .studio-card-title { font-size: 1.2rem; font-weight: 800; color: var(--text-d); margin-bottom: 0.4rem; }
+        .studio-card-desc { color: var(--text-m); font-size: 0.88rem; margin-bottom: 1rem; line-height: 1.6; }
+        .studio-features { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+        .studio-features span {
+            background: var(--bg-pink); color: var(--pink-v);
+            padding: 0.2rem 0.7rem; border-radius: 20px;
+            font-size: 0.78rem; font-weight: 600;
+            border: 1.5px solid var(--pink-l);
+        }
+        .studio-footer { display: flex; align-items: center; justify-content: space-between; }
+        .studio-price {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.5rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-v));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .studio-price span { font-size: 0.78rem; font-weight: 500; }
+        .studio-btn {
+            background: linear-gradient(135deg, var(--pink-v), var(--pink-d));
+            color: white; padding: 0.5rem 1.2rem;
+            border-radius: 20px; text-decoration: none;
+            font-weight: 700; font-size: 0.88rem;
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 3px 3px 0 rgba(155,53,139,0.4);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .studio-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 rgba(155,53,139,0.5);
+        }
+        .studio-compare {
+            max-width: 1100px; margin: 2rem auto 0;
+            text-align: center; padding: 1.2rem 1.5rem;
+            background: white; border-radius: var(--radius);
+            border: var(--border-bold);
+            box-shadow: var(--shadow-anime);
+            position: relative; z-index: 1;
+        }
+        .studio-compare p { color: var(--text-d); font-size: 0.92rem; margin: 0; font-weight: 600; }
+
+        /* ============================================================
+           预约区域
+           ============================================================ */
         .booking-section {
             padding: 5rem 2rem;
-            background: white;
+            background: linear-gradient(180deg, #FFE4EC 0%, #FFB6C1 100%);
         }
         .booking-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--bg-secondary);
+            max-width: 680px; margin: 0 auto;
+            background: white;
             border-radius: var(--radius-xl);
             padding: 3rem;
-            box-shadow: var(--card-shadow);
+            border: var(--border-bold);
+            box-shadow: var(--shadow-anime-lg);
+            position: relative;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
+        /* 装饰角 */
+        .booking-container::before {
+            content: '★';
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            font-size: 2.5rem; color: var(--yellow-v);
+            background: white; border-radius: 50%;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            border: 3px solid var(--yellow-v);
+            box-shadow: 3px 3px 0 rgba(255,213,79,0.3);
         }
+        .form-group { margin-bottom: 1.5rem; }
         .form-label {
-            display: block;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            display: block; font-weight: 700; color: var(--text-d);
+            margin-bottom: 0.5rem; font-size: 0.95rem;
         }
+        .form-label::before { content: '✦ '; color: var(--pink-v); }
         .form-input {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid rgba(168, 85, 247, 0.15);
-            border-radius: 15px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-            font-family: inherit;
+            width: 100%; padding: 1rem 1.2rem;
+            border: 2.5px solid var(--pink-l);
+            border-radius: 16px; font-size: 1rem;
+            transition: all 0.35s ease;
+            background: #FCE4EC; font-family: inherit;
         }
         .form-input:focus {
             outline: none;
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+            border-color: var(--pink-v);
+            background: white;
+            box-shadow: 4px 4px 0 rgba(245,176,194,0.2);
         }
         .form-select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23a855f7' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FF69B4' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             background-size: 1.5rem;
         }
 
-        /* ===== Footer ===== */
+        /* ============================================================
+           Footer
+           ============================================================ */
         .footer {
-            background: var(--bg-tertiary);
-            padding: 4rem 2rem 2rem;
-            text-align: center;
+            background: linear-gradient(180deg, #D81B60 0%, #880E4F 100%);
+            padding: 4rem 2rem 2rem; text-align: center;
+            border-top: 4px solid var(--pink-v);
+            position: relative; overflow: hidden;
+        }
+        /* 星星背景 */
+        .footer::before {
+            content: '✦ ★ ✦ ★ ★ ✦ ★ ★ ✦ ★ ★ ✦';
+            position: absolute; top: 10px; left: 0; right: 0;
+            font-size: 1.2rem; letter-spacing: 12px;
+            color: rgba(255,255,255,0.08);
+            animation: twinkle 3s ease-in-out infinite;
         }
         .footer-logo {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 2.2rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-l), var(--yellow-v));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1rem;
+            filter: drop-shadow(2px 2px 0 rgba(245,176,194,0.3));
         }
-        .footer-text {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
+        .footer-text { color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-size: 0.95rem; }
+        .footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
         .social-btn {
-            width: 45px; height: 45px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);
+            width: 48px; height: 48px; border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(245,176,194,0.3);
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1.3rem;
+            transition: all 0.35s ease;
         }
         .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(168, 85, 247, 0.2);
+            transform: translateY(-4px) scale(1.1);
+            background: var(--pink-v);
+            border-color: var(--pink-v);
+            box-shadow: 0 6px 20px rgba(245,176,194,0.4);
         }
-        .footer-copyright {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        .footer-copyright { color: rgba(255,255,255,0.35); font-size: 0.88rem; }
 
-        /* ===== 响应式 ===== */
+        /* ============================================================
+           全局滚动条 & 选中文字
+           ============================================================ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FCE4EC; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--pink-v), var(--pink-v));
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--pink-d); }
+        ::selection { background: var(--pink-l); color: var(--pink-d); }
+
+        /* ============================================================
+           动画
+           ============================================================ */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .slide-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .slide-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .slide-left.visible, .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ============================================================
+           右手持相机女仆立牌（Hero + 定价区共用）
+           ============================================================ */
+        .pricing-maid {
+            position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+            width: 280px; z-index: 999; pointer-events: none;
+        }
+        .maid-container {
+            position: relative;
+            display: inline-block;
+            width: 340px;
+            max-width: 90vw;
+            pointer-events: auto;
+        }
+        .maid-img {
+            width: 100%; height: auto;
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+            animation: maid-float 4s ease-in-out infinite;
+        }
+        @keyframes maid-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        /* 粉色对话框（小三角朝右，指向女仆） */
+        .maid-bubble {
+            position: absolute;
+            top: 18%; left: -130px;
+            background: #FF69B4;
+            color: white;
+            font-size: 1.1rem;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            pointer-events: auto;
+            z-index: 10;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(255,107,157,0.5);
+            animation: bubble-pulse 2s ease-in-out infinite;
+            transition: transform 0.2s;
+        }
+        .maid-bubble:hover { transform: scale(1.08); background: #FF5722; }
+        .maid-bubble:hover::before { border-left-color: #FF5722; }
+        /* 小三角 - 朝右指向女仆 */
+        .maid-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: 12px; right: -10px;
+            border: 10px solid transparent;
+            border-left-color: #FF69B4;
+        }
+        @keyframes bubble-pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(255,107,157,0.5); }
+            50% { box-shadow: 0 4px 28px rgba(255,107,157,0.9); }
+        }
+        /* QR弹窗遮罩 */
+        .maid-modal-overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            align-items: center; justify-content: center;
+        }
+        .maid-modal-overlay.active { display: flex; }
+        .maid-modal {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            max-width: 340px;
+            width: 90vw;
+            position: relative;
+            animation: modal-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes modal-pop {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .maid-modal-close {
+            position: absolute; top: 12px; right: 16px;
+            font-size: 1.5rem; color: #999;
+            cursor: pointer; background: none; border: none; line-height: 1;
+        }
+        .maid-modal-close:hover { color: #FF69B4; }
+        .maid-modal-title {
+            font-size: 1.25rem; font-weight: 700;
+            color: #FF69B4; margin-bottom: 1rem;
+        }
+        .maid-modal-wechat {
+            font-size: 1.1rem; color: #333; margin-bottom: 1.2rem;
+            background: #FCE4EC; border-radius: 12px; padding: 0.6rem;
+        }
+        .maid-modal-qr {
+            width: 200px; height: 200px;
+            background: #f0f0f0;
+            border-radius: 16px;
+            margin: 0 auto 1rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #FF69B4;
+        }
+        .maid-modal-tip {
+            font-size: 0.85rem; color: #888;
+        }
+        /* ============================================================
+           响应式
+           ============================================================ */
         @media (max-width: 768px) {
-            .nav { padding: 0.8rem 1rem; }
+            .nav { padding: 0.7rem 1rem; }
             .nav-links { display: none; }
-            .hero-title { font-size: 2.5rem; }
+            .hero-title { font-size: 2.4rem; }
             .hero-subtitle { font-size: 1rem; }
             .stats { gap: 2rem; padding: 2rem 1rem; }
-            .stat-number { font-size: 2rem; }
             .section-title { font-size: 2rem; }
             .booking-container { padding: 2rem; }
-            .featured-card { flex: 0 0 280px; }
+            .featured-card { flex: 0 0 270px; }
+            .pricing-mascot { display: none; }
+            .maid-container { width: 220px; }
+            .maid-bubble { font-size: 0.9rem; left: -80px; top: 10%; }
         }
-
-        /* ===== 动画 ===== */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .hero-buttons a { width: 80%; text-align: center; }
+            .section-title { font-size: 1.6rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .ip-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -701,10 +1242,11 @@
 
     <!-- 导航 -->
     <nav class="nav" id="nav">
-        <a href="#" class="logo">✨ 顺息</a>
+        <a href="#" class="logo">🌸 顺息</a>
         <ul class="nav-links">
             <li><a href="#featured">精选作品</a></li>
             <li><a href="#ip">游戏IP</a></li>
+            <li><a href="studio.html" style="color: var(--pink-d); background: rgba(245,176,194,0.1); border-color: var(--pink-v);">🎨 白棚定制</a></li>
             <li><a href="#pricing">套餐价格</a></li>
             <li><a href="#testimonials">客户评价</a></li>
             <li><a href="#booking">预约拍摄</a></li>
@@ -714,14 +1256,30 @@
 
     <!-- Hero -->
     <section class="hero">
+        <div class="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('images/cos-maid-pink.jpg'); background-size: cover; background-position: center top;"></div>
+            <div class="hero-slide" style="background-image: url('images/cos-maid-bw.jpg'); background-size: cover; background-position: center top;"></div>
+            <div class="hero-slide" style="background-image: url('images/cos-maid-pink.jpg'); background-size: cover; background-position: center top;"></div>
+            <div class="hero-slide" style="background-image: url('images/cos-maid-bw.jpg'); background-size: cover; background-position: center top;"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-sakura-corner"></div>
+        <div class="hero-danmaku" id="heroDanmaku"></div>
         <div class="hero-content">
             <div class="hero-badge">🎮 专业COSPLAY摄影工作室</div>
             <h1 class="hero-title">让次元照进现实<br>定格你的热爱</h1>
             <p class="hero-subtitle">专注王者荣耀、原神、第五人格等游戏角色摄影<br>专业灯光设备 × 精修出片 × 沉浸式拍摄体验</p>
             <div class="hero-buttons">
+                <a href="studio.html" class="btn-studio">🎨 白棚定制 <span style="font-size:0.8em;opacity:0.9;">NEW!</span></a>
                 <a href="#booking" class="btn-primary">预约拍摄 📸</a>
                 <a href="#featured" class="btn-secondary">浏览作品 🎨</a>
             </div>
+        </div>
+        <div class="hero-indicators">
+            <button class="hero-dot active" data-slide="0"></button>
+            <button class="hero-dot" data-slide="1"></button>
+            <button class="hero-dot" data-slide="2"></button>
+            <button class="hero-dot" data-slide="3"></button>
         </div>
     </section>
 
@@ -729,19 +1287,19 @@
     <section class="stats">
         <div class="stat-item fade-up">
             <div class="stat-number">500+</div>
-            <div class="stat-label">成功拍摄</div>
+            <div class="stat-label">成功拍摄 🌟</div>
         </div>
         <div class="stat-item fade-up">
             <div class="stat-number">50+</div>
-            <div class="stat-label">COS老师合作</div>
+            <div class="stat-label">COS老师合作 💖</div>
         </div>
         <div class="stat-item fade-up">
             <div class="stat-number">98%</div>
-            <div class="stat-label">客户满意度</div>
+            <div class="stat-label">客户满意度 ✨</div>
         </div>
         <div class="stat-item fade-up">
             <div class="stat-number">5+</div>
-            <div class="stat-label">热门游戏IP</div>
+            <div class="stat-label">热门游戏IP 🎮</div>
         </div>
     </section>
 
@@ -750,55 +1308,55 @@
         <div class="section-header">
             <div class="section-tag">精选作品</div>
             <h2 class="section-title">近期精彩成片</h2>
-            <p class="section-desc">每一张都是用心之作</p>
+            <p class="section-desc">每一张都是用心之作 💕</p>
         </div>
         <div class="featured-slider">
             <div class="featured-card">
-                <img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&h=480&fit=crop" alt="王者荣耀-貂蝉" class="featured-image">
+                <img src="images/cos-maid-pink.jpg" alt="貂蝉" class="featured-image">
                 <div class="featured-info">
                     <div class="featured-ip">王者荣耀</div>
                     <div class="featured-title">貂蝉 · 绝世舞姬</div>
-                    <div class="featured-cosplayer">COS: 小樱</div>
+                    <div class="featured-cosplayer">COS: 小樱 📷</div>
                 </div>
             </div>
             <div class="featured-card">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=480&fit=crop" alt="原神-甘雨" class="featured-image">
+                <img src="images/cos-maid-bw.jpg" alt="甘雨" class="featured-image">
                 <div class="featured-info">
                     <div class="featured-ip">原神</div>
                     <div class="featured-title">甘雨 · 循循守月</div>
-                    <div class="featured-cosplayer">COS: 月见</div>
+                    <div class="featured-cosplayer">COS: 月见 📷</div>
                 </div>
             </div>
             <div class="featured-card">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=480&fit=crop" alt="第五人格-红蝶" class="featured-image">
+                <img src="images/cos-maid-pink.jpg" alt="红蝶" class="featured-image">
                 <div class="featured-info">
                     <div class="featured-ip">第五人格</div>
                     <div class="featured-title">红蝶 · 美智子</div>
-                    <div class="featured-cosplayer">COS: 夜鸦</div>
+                    <div class="featured-cosplayer">COS: 夜鸦 📷</div>
                 </div>
             </div>
             <div class="featured-card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=480&fit=crop" alt="鸣潮-长离" class="featured-image">
+                <img src="images/cos-maid-bw.jpg" alt="长离" class="featured-image">
                 <div class="featured-info">
                     <div class="featured-ip">鸣潮</div>
                     <div class="featured-title">长离 · 焚焰之翼</div>
-                    <div class="featured-cosplayer">COS: 星羽</div>
+                    <div class="featured-cosplayer">COS: 星羽 📷</div>
                 </div>
             </div>
             <div class="featured-card">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&h=480&fit=crop" alt="无期迷途-海拉" class="featured-image">
+                <img src="images/cos-maid-pink.jpg" alt="海拉" class="featured-image">
                 <div class="featured-info">
                     <div class="featured-ip">无期迷途</div>
                     <div class="featured-title">海拉 · 深渊之眼</div>
-                    <div class="featured-cosplayer">COS: 暗夜</div>
+                    <div class="featured-cosplayer">COS: 暗夜 📷</div>
                 </div>
             </div>
             <div class="featured-card">
-                <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&h=480&fit=crop" alt="王者荣耀-李白" class="featured-image">
+                <img src="images/cos-maid-bw.jpg" alt="李白" class="featured-image">
                 <div class="featured-info">
                     <div class="featured-ip">王者荣耀</div>
                     <div class="featured-title">李白 · 凤求凰</div>
-                    <div class="featured-cosplayer">COS: 剑心</div>
+                    <div class="featured-cosplayer">COS: 剑心 📷</div>
                 </div>
             </div>
         </div>
@@ -806,47 +1364,86 @@
 
     <!-- IP分类 -->
     <section class="ip-section" id="ip">
+        <div class="polka-dots"></div>
         <div class="section-header">
-            <div class="section-tag">游戏IP</div>
-            <h2 class="section-title">精选游戏角色摄影</h2>
-            <p class="section-desc">覆盖热门游戏IP，专业还原角色魅力</p>
+            <div class="section-tag">✨ 精选IP摄影</div>
+            <h2 class="section-title">次元角色 · 精彩呈现</h2>
+            <p class="section-desc">动漫 / 游戏 / 小说 / 影视，全方位覆盖热门IP</p>
+        </div>
+        <div class="ip-filter">
+            <button class="filter-btn active" data-filter="all">🌸 全部</button>
+            <button class="filter-btn" data-filter="anime">🎀 动漫</button>
+            <button class="filter-btn" data-filter="game">🎮 游戏</button>
+            <button class="filter-btn" data-filter="novel">📚 小说</button>
+            <button class="filter-btn" data-filter="movie">🎬 影视剧</button>
         </div>
         <div class="ip-grid">
-            <a href="ip-wangzhe.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1596464716960-47b67b5c0e7d?w=600&h=400&fit=crop" alt="王者荣耀" class="ip-image">
-                <div class="ip-tag">热门</div>
+            <a href="ip-wangzhe.html" class="ip-card fade-up" data-category="game">
+                <img src="images/cos-maid-pink.jpg" alt="王者荣耀" class="ip-image">
+                <div class="ip-tag">🎮 游戏</div>
                 <div class="ip-overlay">
                     <div class="ip-name">王者荣耀</div>
                     <div class="ip-count">120+ 精彩作品</div>
                 </div>
             </a>
-            <a href="ip-diwu.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" alt="第五人格" class="ip-image">
+            <a href="ip-diwu.html" class="ip-card fade-up" data-category="game">
+                <img src="images/cos-maid-bw.jpg" alt="第五人格" class="ip-image">
                 <div class="ip-overlay">
                     <div class="ip-name">第五人格</div>
                     <div class="ip-count">80+ 哥特风作品</div>
                 </div>
             </a>
-            <a href="ip-mingchao.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop" alt="鸣潮" class="ip-image">
-                <div class="ip-tag">新作</div>
+            <a href="ip-mingchao.html" class="ip-card fade-up" data-category="game">
+                <img src="images/cos-maid-pink.jpg" alt="鸣潮" class="ip-image">
+                <div class="ip-tag">✨ 新作</div>
                 <div class="ip-overlay">
                     <div class="ip-name">鸣潮</div>
                     <div class="ip-count">45+ 科幻风作品</div>
                 </div>
             </a>
-            <a href="ip-yuanshen.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop" alt="原神" class="ip-image">
+            <a href="ip-yuanshen.html" class="ip-card fade-up" data-category="game">
+                <img src="images/cos-maid-bw.jpg" alt="原神" class="ip-image">
                 <div class="ip-overlay">
                     <div class="ip-name">原神</div>
                     <div class="ip-count">100+ 奇幻风作品</div>
                 </div>
             </a>
-            <a href="ip-wuqi.html" class="ip-card fade-up">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=600&h=400&fit=crop" alt="无期迷途" class="ip-image">
+            <a href="ip-wuqi.html" class="ip-card fade-up" data-category="game">
+                <img src="images/cos-maid-pink.jpg" alt="无期迷途" class="ip-image">
                 <div class="ip-overlay">
                     <div class="ip-name">无期迷途</div>
                     <div class="ip-count">60+ 暗黑风作品</div>
+                </div>
+            </a>
+            <a href="#" class="ip-card fade-up" data-category="anime">
+                <img src="images/cos-maid-bw.jpg" alt="鬼灭之刃" class="ip-image">
+                <div class="ip-tag">🎀 动漫</div>
+                <div class="ip-overlay">
+                    <div class="ip-name">鬼灭之刃</div>
+                    <div class="ip-count">50+ 和风作品</div>
+                </div>
+            </a>
+            <a href="#" class="ip-card fade-up" data-category="anime">
+                <img src="images/cos-maid-pink.jpg" alt="间谍过家家" class="ip-image">
+                <div class="ip-overlay">
+                    <div class="ip-name">间谍过家家</div>
+                    <div class="ip-count">35+ 温馨作品</div>
+                </div>
+            </a>
+            <a href="#" class="ip-card fade-up" data-category="novel">
+                <img src="images/cos-maid-bw.jpg" alt="魔道祖师" class="ip-image">
+                <div class="ip-tag">📚 小说</div>
+                <div class="ip-overlay">
+                    <div class="ip-name">魔道祖师</div>
+                    <div class="ip-count">70+ 古风作品</div>
+                </div>
+            </a>
+            <a href="#" class="ip-card fade-up" data-category="movie">
+                <img src="images/cos-maid-pink.jpg" alt="陈情令" class="ip-image">
+                <div class="ip-tag">🎬 影视</div>
+                <div class="ip-overlay">
+                    <div class="ip-name">陈情令</div>
+                    <div class="ip-count">90+ 仙侠作品</div>
                 </div>
             </a>
         </div>
@@ -884,14 +1481,22 @@
 
     <!-- 定价 -->
     <section class="pricing-section" id="pricing">
+        <!-- 右手持相机女仆立牌（定价区） -->
+        <div class="pricing-maid" aria-hidden="true">
+            <div class="maid-container">
+                <img src="images/cos-maid-transparent.png" alt="顺息女仆" class="maid-img">
+                <div class="maid-bubble" onclick="showMaidQR()">点我预定~</div>
+            </div>
+        </div>
+
         <div class="section-header">
             <div class="section-tag">套餐价格</div>
             <h2 class="section-title">选择适合你的套餐</h2>
-            <p class="section-desc">透明定价，无隐形消费</p>
+            <p class="section-desc">透明定价，无隐形消费 💖</p>
         </div>
         <div class="pricing-grid">
             <div class="pricing-card fade-up">
-                <div class="pricing-name">基础档</div>
+                <div class="pricing-name">🌸 基础档</div>
                 <div class="pricing-price"><span>¥</span>199<span>/次</span></div>
                 <ul class="pricing-features">
                     <li>2小时拍摄时长</li>
@@ -899,10 +1504,10 @@
                     <li>基础灯光设备</li>
                     <li>在线选片服务</li>
                 </ul>
-                <a href="#booking" class="btn-secondary" style="width:100%;">选择套餐</a>
+                <a href="#booking" class="btn-secondary" style="width:100%; color:var(--text-d);">选择套餐 🌸</a>
             </div>
             <div class="pricing-card popular fade-up">
-                <div class="pricing-name">进阶档</div>
+                <div class="pricing-name">💖 进阶档</div>
                 <div class="pricing-price"><span>¥</span>299<span>/次</span></div>
                 <ul class="pricing-features">
                     <li>4小时拍摄时长</li>
@@ -911,10 +1516,10 @@
                     <li>多场景切换</li>
                     <li>在线选片服务</li>
                 </ul>
-                <a href="#booking" class="btn-primary" style="width:100%;">选择套餐</a>
+                <a href="#booking" class="btn-primary" style="width:100%;">选择套餐 💖</a>
             </div>
             <div class="pricing-card fade-up">
-                <div class="pricing-name">高端档</div>
+                <div class="pricing-name">👑 高端档</div>
                 <div class="pricing-price"><span>¥</span>599<span>/次</span></div>
                 <ul class="pricing-features">
                     <li>全天拍摄</li>
@@ -924,7 +1529,7 @@
                     <li>专属化妆师</li>
                     <li>赠送相册一本</li>
                 </ul>
-                <a href="#booking" class="btn-secondary" style="width:100%;">选择套餐</a>
+                <a href="#booking" class="btn-secondary" style="width:100%; color:var(--text-d);">选择套餐 👑</a>
             </div>
         </div>
     </section>
@@ -941,7 +1546,7 @@
                 <div class="testimonial-author">
                     <img src="https://i.pravatar.cc/100?img=1" alt="头像" class="testimonial-avatar">
                     <div>
-                        <div class="testimonial-name">小樱</div>
+                        <div class="testimonial-name">小樱 🌸</div>
                         <div class="testimonial-role">王者荣耀 · 貂蝉</div>
                         <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     </div>
@@ -952,7 +1557,7 @@
                 <div class="testimonial-author">
                     <img src="https://i.pravatar.cc/100?img=5" alt="头像" class="testimonial-avatar">
                     <div>
-                        <div class="testimonial-name">月见</div>
+                        <div class="testimonial-name">月见 🌙</div>
                         <div class="testimonial-role">原神 · 甘雨</div>
                         <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     </div>
@@ -963,7 +1568,7 @@
                 <div class="testimonial-author">
                     <img src="https://i.pravatar.cc/100?img=8" alt="头像" class="testimonial-avatar">
                     <div>
-                        <div class="testimonial-name">夜鸦</div>
+                        <div class="testimonial-name">夜鸦 🦅</div>
                         <div class="testimonial-role">第五人格 · 红蝶</div>
                         <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                     </div>
@@ -972,29 +1577,103 @@
         </div>
     </section>
 
+    <!-- 白棚介绍 -->
+    <section class="studio-section" id="studio">
+        <div class="section-header">
+            <div class="section-tag">🎨 专业摄影棚</div>
+            <h2 class="section-title">白棚定制</h2>
+            <p class="section-desc">纯白专业摄影棚，适配各类游戏/动漫/COS角色场景，一站式出片</p>
+        </div>
+        <div class="studio-grid">
+            <div class="studio-card fade-up">
+                <div class="studio-card-img">
+                    <img src="images/cos-maid-bw.jpg" alt="基础白棚" loading="lazy">
+                    <div class="studio-badge">基础棚</div>
+                </div>
+                <div class="studio-card-body">
+                    <h3 class="studio-card-title">🌸 纯净白棚</h3>
+                    <p class="studio-card-desc">简约纯白背景，突出人物主体，适合日常COS与角色还原</p>
+                    <div class="studio-features">
+                        <span>✨ 8×8m</span>
+                        <span>💡 影视灯×4</span>
+                        <span>🪑 简约道具</span>
+                    </div>
+                    <div class="studio-footer">
+                        <span class="studio-price">¥129<span>/小时</span></span>
+                        <a href="#booking" class="studio-btn">预约 🌸</a>
+                    </div>
+                </div>
+            </div>
+            <div class="studio-card fade-up" style="--delay:0.1s">
+                <div class="studio-card-img">
+                    <img src="images/cos-maid-pink.jpg" alt="专业白棚" loading="lazy">
+                    <div class="studio-badge popular">🔥 热门</div>
+                </div>
+                <div class="studio-card-body">
+                    <h3 class="studio-card-title">💖 专业白棚</h3>
+                    <p class="studio-card-desc">大尺寸白棚，配备更多灯光组合，可拍摄全身战损/华丽礼服等大型角色</p>
+                    <div class="studio-features">
+                        <span>✨ 12×10m</span>
+                        <span>💡 影视灯×8</span>
+                        <span>🎭 丰富道具</span>
+                        <span>🌬️ 风机/烟雾</span>
+                    </div>
+                    <div class="studio-footer">
+                        <span class="studio-price">¥299<span>/小时</span></span>
+                        <a href="#booking" class="studio-btn">预约 💖</a>
+                    </div>
+                </div>
+            </div>
+            <div class="studio-card fade-up" style="--delay:0.2s">
+                <div class="studio-card-img">
+                    <img src="images/cos-maid-bw.jpg" alt="VIP白棚" loading="lazy">
+                    <div class="studio-badge vip">👑 VIP</div>
+                </div>
+                <div class="studio-card-body">
+                    <h3 class="studio-card-title">👑 VIP全景棚</h3>
+                    <p class="studio-card-desc">顶级白棚，专业灯光矩阵，支持 RAW 格式直出，适合商业合作与大赛参赛作品</p>
+                    <div class="studio-features">
+                        <span>✨ 15×12m</span>
+                        <span>💡 影视灯×12</span>
+                        <span>🎬 引闪器</span>
+                        <span>📹 视频录制</span>
+                        <span>🎨 定制背景纸</span>
+                    </div>
+                    <div class="studio-footer">
+                        <span class="studio-price">¥599<span>/小时</span></span>
+                        <a href="#booking" class="studio-btn">预约 👑</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="studio-compare">
+            <p>📸 棚内拍摄包含精修照片 · RAW 原片全送 · 灯光师全程协助 · 当天出片预览</p>
+        </div>
+    </section>
+
     <!-- 预约 -->
     <section class="booking-section" id="booking">
         <div class="section-header">
             <div class="section-tag">预约拍摄</div>
             <h2 class="section-title">开启你的次元之旅</h2>
-            <p class="section-desc">填写信息，我们会尽快联系你确认档期</p>
+            <p class="section-desc">填写信息，我们会尽快联系你确认档期 💕</p>
         </div>
         <div class="booking-container">
             <form id="bookingForm">
                 <div class="form-group">
-                    <label class="form-label">你的名字 ✨</label>
+                    <label class="form-label">你的名字</label>
                     <input type="text" class="form-input" placeholder="请输入你的名字" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">手机号码 📱</label>
+                    <label class="form-label">手机号码</label>
                     <input type="tel" class="form-input" placeholder="请输入手机号码" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">微信号 💬</label>
+                    <label class="form-label">微信号</label>
                     <input type="text" class="form-input" placeholder="方便我们联系你">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">选择游戏IP 🎮</label>
+                    <label class="form-label">选择游戏IP</label>
                     <select class="form-input form-select" required>
                         <option value="">请选择游戏IP</option>
                         <option value="wangzhe">王者荣耀</option>
@@ -1005,7 +1684,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">选择套餐 💎</label>
+                    <label class="form-label">选择套餐</label>
                     <select class="form-input form-select" required>
                         <option value="">请选择套餐</option>
                         <option value="199">基础档 ¥199</option>
@@ -1017,66 +1696,269 @@
                     <label class="form-label">备注信息 (可选)</label>
                     <textarea class="form-input" rows="3" placeholder="角色名称、拍摄时间偏好等..."></textarea>
                 </div>
-                <button type="submit" class="btn-primary" style="width:100%;">提交预约 ✨</button>
+                <button type="submit" class="btn-primary" style="width:100%;">提交预约 💖✨</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-logo">✨ 顺息 COSPLAY</div>
-        <p class="footer-text">专注游戏角色摄影，让每一个次元的灵魂被镜头捕捉</p>
+        <div class="footer-logo">✨ 顺息 COSPLAY ✨</div>
+        <p class="footer-text">专注游戏角色摄影，让每一个次元的灵魂被镜头捕捉 💕</p>
         <div class="footer-social">
-            <a href="#" class="social-btn" title="微信">📱</a>
-            <a href="#" class="social-btn" title="QQ">💬</a>
+            <a href="#" class="social-btn" title="微信">💬</a>
+            <a href="#" class="social-btn" title="QQ">📱</a>
             <a href="#" class="social-btn" title="微博">📷</a>
             <a href="#" class="social-btn" title="B站">🎬</a>
         </div>
-        <p class="footer-copyright">© 2026 顺息COSPLAY摄影工作室 · 沪ICP备XXXXXXXX号</p>
+        <p class="footer-copyright">© 2026 顺息COSPLAY摄影工作室 · 沪ICP备XXXXXXXX号 🌸</p>
     </footer>
 
+    <!-- QR弹窗 -->
+    <div class="maid-modal-overlay" id="maidModal">
+        <div class="maid-modal">
+            <button class="maid-modal-close" onclick="closeMaidQR()">✕</button>
+            <div class="maid-modal-title">💕 扫码添加客服小姐姐</div>
+            <div class="maid-modal-wechat">📱 微信号：shunxi-studio</div>
+            <div class="maid-modal-qr">💖</div>
+            <div class="maid-modal-tip">长按识别 · 工作日 10:00-22:00 快速回复</div>
+        </div>
+    </div>
+
     <script>
-        // 樱花飘落
+        // ===== QR弹窗 =====
+        function showMaidQR() {
+            document.getElementById('maidModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMaidQR() {
+            document.getElementById('maidModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('maidModal').addEventListener('click', function(e) {
+            if (e.target === this) closeMaidQR();
+        });
+
+        // ===== 樱花飘落 =====
         function createSakura() {
             const sakura = document.getElementById('sakura');
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 18; i++) {
                 const petal = document.createElement('div');
                 petal.className = 'sakura-petal';
                 petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = (8 + Math.random() * 8) + 's';
-                petal.style.animationDelay = Math.random() * 10 + 's';
-                petal.style.width = (8 + Math.random() * 8) + 'px';
-                petal.style.height = petal.style.width;
+                petal.style.animationDuration = (7 + Math.random() * 9) + 's';
+                petal.style.animationDelay = Math.random() * 12 + 's';
+                const size = 8 + Math.random() * 10;
+                petal.style.width = size + 'px';
+                petal.style.height = size + 'px';
                 sakura.appendChild(petal);
             }
         }
         createSakura();
 
-        // 导航滚动效果
+        // ===== 轮播 =====
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
+        function startSlideshow() { slideInterval = setInterval(nextSlide, 5000); }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(parseInt(dot.dataset.slide));
+                startSlideshow();
+            });
+        });
+        startSlideshow();
+
+        // ===== 导航 =====
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            nav.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // 滚动动画
+        // ===== 滚动动画 =====
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => entry.target.classList.add('visible'), delay);
                 }
             });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-up, .slide-left, .slide-right').forEach(el => observer.observe(el));
 
-        // 表单提交
+        // ===== IP 筛选 =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const ipCards = document.querySelectorAll('.ip-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                ipCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = 'bounce-in 0.4s ease';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== 表单 =====
         document.getElementById('bookingForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('预约提交成功！我们会尽快联系你确认档期 ✨');
+            alert('预约提交成功！我们会尽快联系你确认档期 ✨💖');
         });
+
+        // ===== B站风格弹幕 =====
+        (function() {
+            const container = document.getElementById('heroDanmaku');
+            if (!container) return;
+
+            const texts = [
+                '让次元照进现实 ✨',
+                '预约了甘雨！好期待 🎯',
+                '这成片也太好看了吧',
+                '专业灯光绝了',
+                '精修出片超快',
+                '摄影师懂角色 💯',
+                '下次还要来拍',
+                '王者荣耀yyds',
+                '白棚定制好便宜',
+                '顺息真的用心',
+                '原神粉狂喜',
+                '第五人格哥特风超美',
+                '拍的战损妆太帅了',
+                '化妆师手艺很好',
+                '下次想拍鸣潮',
+                '成片氛围感拉满',
+                '这家工作室太懂了',
+                '价格实惠质量高',
+                'COS老师都很专业',
+                '强烈推荐这家',
+                '已经第三次来了',
+                '无期迷途党集合',
+                '下次预约高端档',
+                '出片速度很快',
+                '滤镜调色超好看',
+                '场地布置用心',
+                '灯光打得超专业',
+                '道具也很齐全',
+                '期待下一次拍摄',
+                '已推荐给朋友了',
+                '这里的氛围太棒了',
+                '终于找到靠谱工作室',
+                '档期好难约要趁早',
+                '期待成片出炉 🎉',
+                '甘雨老婆太美了 💙',
+                '貂蝉皮肤拍出来超绝',
+                '红蝶哥特风yyds',
+                '长离小姐姐好飒',
+                '海拉气场全开',
+                '李白凤求凰太帅',
+                '原神新角色想拍',
+                '鸣潮建模绝了',
+                '第五人格暗黑风爱了',
+                '无期迷途立绘太美',
+                '化妆师太会化了',
+                '服装道具很还原',
+                '背景虚化很高级',
+                '后期修图很自然',
+                '这光打得像电影',
+                '柔光箱效果绝了',
+                '补光灯打得太好了',
+                '白棚拍照很出片',
+                '摄影师很会指导',
+                '摆姿势很自然',
+                '成片质量超出预期',
+                '性价比超高推荐',
+                '第一次拍就这么满意',
+                '下次还来顺息拍',
+                '朋友推荐来的没错',
+                '这价格值了',
+                '服务态度超好',
+                '场地干净整洁',
+                '服装选择很多',
+                '道具都很新',
+                '化妆间很大',
+                '休息区很舒适',
+                '空调温度刚好',
+                '音乐很有氛围',
+                '整体体验满分',
+            ];
+
+            const usedTexts = new Set();
+            const LANES = 10;
+            const laneBusy = new Array(LANES).fill(false);
+
+            function getFreeLane() {
+                for (let i = 0; i < LANES; i++) {
+                    if (!laneBusy[i]) return i;
+                }
+                return -1;
+            }
+
+            function createBullet() {
+                const lane = getFreeLane();
+                if (lane === -1) return;
+
+                let text;
+                let attempts = 0;
+                do {
+                    text = texts[Math.floor(Math.random() * texts.length)];
+                    attempts++;
+                } while (usedTexts.has(text) && attempts < 10);
+                usedTexts.add(text);
+                setTimeout(() => usedTexts.delete(text), 8000);
+
+                const bullet = document.createElement('div');
+                bullet.className = 'danmaku-bullet';
+                bullet.textContent = text;
+                const topPct = 8 + (lane / LANES) * 80 + (Math.random() * 4 - 2);
+                bullet.style.top = topPct + '%';
+                const duration = 8 + Math.random() * 6;
+                bullet.style.animation = `danmaku-fly ${duration}s linear forwards`;
+                container.appendChild(bullet);
+                laneBusy[lane] = true;
+                setTimeout(() => {
+                    bullet.remove();
+                    laneBusy[lane] = false;
+                }, duration * 1000 + 200);
+            }
+
+            setTimeout(createBullet, 300);
+            setTimeout(createBullet, 600);
+            setTimeout(createBullet, 900);
+            setTimeout(createBullet, 1500);
+            setTimeout(createBullet, 2200);
+
+            function scheduleNext() {
+                const delay = 800 + Math.random() * 1200;
+                setTimeout(() => {
+                    createBullet();
+                    scheduleNext();
+                }, delay);
+            }
+            scheduleNext();
+        })();
     </script>
 </body>
 </html>
+
+
+
+
