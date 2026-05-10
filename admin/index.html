@@ -5,207 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理后台 | 顺息摄影工作室</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-card: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --accent: #c9a962;
-            --border: #2a2a2a;
-            --danger: #e74c3c;
-            --success: #2ecc71;
+            --bg-primary: #ffffff;
+            --bg-secondary: #FFF5F8;
+            --bg-tertiary: #f8f4ff;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --accent-pink: #FF6B9D;
+            --accent-purple: #9D8DF1;
+            --accent-blue: #60a5fa;
+            --accent-green: #34d399;
+            --gradient-1: linear-gradient(135deg, #FF6B9D, #a855f7);
+            --gradient-2: linear-gradient(135deg, #60a5fa, #a855f7);
+            --border: rgba(168, 85, 247, 0.15);
+            --border-strong: rgba(168, 85, 247, 0.3);
+            --shadow-sm: 0 2px 8px rgba(168, 85, 247, 0.08);
+            --shadow-md: 0 4px 20px rgba(168, 85, 247, 0.12);
+            --shadow-lg: 0 8px 40px rgba(168, 85, 247, 0.15);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
             color: var(--text-primary);
             min-height: 100vh;
         }
 
-        /* Login Page */
+        /* ===== Login Page ===== */
         .login-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+            background: linear-gradient(135deg, #FFF5F8 0%, #f8f4ff 50%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
         }
-
+        .login-container::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,107,157,0.2) 0%, transparent 70%);
+            top: -100px; right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+        .login-container::after {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(157,141,241,0.2) 0%, transparent 70%);
+            bottom: -50px; left: -50px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
         .login-box {
-            background: var(--bg-card);
+            background: white;
             padding: 3rem;
-            width: 400px;
+            width: 420px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
         }
-
-        .login-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .login-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        .login-logo {
             text-align: center;
             margin-bottom: 2rem;
         }
-
+        .login-logo-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .login-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .login-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
         .login-input {
             width: 100%;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
+            padding: 1rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
             color: var(--text-primary);
             font-size: 1rem;
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
-
         .login-input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
         }
-
         .login-btn {
             width: 100%;
             padding: 1rem;
-            background: var(--accent);
+            background: var(--gradient-1);
             border: none;
-            color: var(--bg-primary);
+            border-radius: var(--radius);
+            color: white;
             font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
-
         .login-btn:hover {
-            background: #e0c080;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 157, 0.4);
         }
-
         .login-error {
             color: var(--danger);
             font-size: 0.85rem;
             text-align: center;
             margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: var(--radius);
             display: none;
         }
 
-        /* Dashboard */
-        .dashboard {
-            display: none;
-        }
-
-        .dashboard.active {
-            display: block;
-        }
+        /* ===== Dashboard ===== */
+        .dashboard { display: none; }
+        .dashboard.active { display: block; }
 
         /* Sidebar */
         .sidebar {
             position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 250px;
-            background: var(--bg-secondary);
+            left: 0; top: 0; bottom: 0;
+            width: 260px;
+            background: white;
             border-right: 1px solid var(--border);
-            padding: 2rem 0;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-sm);
+            z-index: 100;
         }
-
         .sidebar-brand {
-            font-size: 1.5rem;
-            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 0 1.5rem;
             margin-bottom: 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
         }
-
-        .sidebar-nav {
-            list-style: none;
+        .sidebar-brand span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
+        .sidebar-nav { list-style: none; }
         .sidebar-nav a {
-            display: block;
-            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 1.5rem;
             color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.3s ease;
+            border-left: 3px solid transparent;
         }
-
-        .sidebar-nav a:hover,
-        .sidebar-nav a.active {
+        .sidebar-nav a:hover {
             color: var(--text-primary);
-            background: rgba(201, 169, 98, 0.1);
-            border-left: 3px solid var(--accent);
+            background: var(--bg-secondary);
         }
-
+        .sidebar-nav a.active {
+            color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.08);
+            border-left-color: var(--accent-purple);
+            font-weight: 600;
+        }
         .sidebar-section {
-            padding: 1rem 1.5rem;
-            color: var(--text-secondary);
+            padding: 1.5rem 1.5rem 0.5rem;
+            color: var(--text-muted);
             font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-top: 1rem;
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 250px;
+            margin-left: 260px;
             padding: 2rem;
+            min-height: 100vh;
         }
-
         .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
         }
-
         .page-title {
             font-size: 1.8rem;
+            font-weight: 700;
         }
+        .header-actions { display: flex; gap: 1rem; }
 
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
+        /* Buttons */
         .btn {
             padding: 0.75rem 1.5rem;
             border: none;
+            border-radius: var(--radius);
             cursor: pointer;
             font-size: 0.9rem;
+            font-weight: 600;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-
         .btn-primary {
-            background: var(--accent);
-            color: var(--bg-primary);
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.25);
         }
-
         .btn-primary:hover {
-            background: #e0c080;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 157, 0.35);
         }
-
         .btn-secondary {
-            background: var(--bg-card);
+            background: white;
             color: var(--text-primary);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
         }
-
         .btn-secondary:hover {
-            border-color: var(--accent);
+            border-color: var(--accent-purple);
+            background: var(--bg-secondary);
         }
-
         .btn-danger {
             background: var(--danger);
             color: white;
         }
+        .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
 
         /* Stats Grid */
         .stats-grid {
@@ -214,149 +266,149 @@
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-
         .stat-card {
-            background: var(--bg-card);
+            background: white;
             padding: 1.5rem;
+            border-radius: var(--radius-lg);
             border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
         }
-
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .stat-icon {
+            width: 48px; height: 48px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .stat-icon.pink { background: rgba(255, 107, 157, 0.15); }
+        .stat-icon.purple { background: rgba(168, 85, 247, 0.15); }
+        .stat-icon.blue { background: rgba(96, 165, 250, 0.15); }
+        .stat-icon.green { background: rgba(52, 211, 153, 0.15); }
         .stat-label {
             color: var(--text-secondary);
             font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
-
         .stat-value {
             font-size: 2rem;
-            font-weight: 600;
+            font-weight: 700;
         }
-
         .stat-change {
             font-size: 0.85rem;
             margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
+        .stat-change.positive { color: var(--success); }
+        .stat-change.negative { color: var(--danger); }
 
-        .stat-change.positive {
-            color: var(--success);
-        }
-
-        .stat-change.negative {
-            color: var(--danger);
-        }
-
-        /* Data Table */
+        /* Data Card */
         .data-card {
-            background: var(--bg-card);
+            background: white;
+            border-radius: var(--radius-lg);
             border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
-
         .card-header {
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--bg-secondary);
         }
-
         .card-title {
             font-size: 1.1rem;
+            font-weight: 600;
         }
+        .card-body { padding: 1.5rem; }
 
+        /* Table */
         .data-table {
             width: 100%;
             border-collapse: collapse;
         }
-
         .data-table th,
         .data-table td {
-            padding: 1rem 1.5rem;
+            padding: 1rem 1.25rem;
             text-align: left;
             border-bottom: 1px solid var(--border);
         }
-
         .data-table th {
             color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.85rem;
+            font-weight: 600;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            background: var(--bg-tertiary);
         }
-
-        .data-table tr:hover {
-            background: rgba(201, 169, 98, 0.05);
-        }
-
+        .data-table tr:hover td { background: var(--bg-secondary); }
         .status-badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
+            padding: 0.3rem 0.75rem;
             font-size: 0.75rem;
-            border-radius: 3px;
+            font-weight: 600;
+            border-radius: 20px;
         }
+        .status-pending { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .status-paid { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .status-completed { background: rgba(96, 165, 250, 0.15); color: var(--accent-blue); }
 
-        .status-pending {
-            background: rgba(241, 196, 15, 0.2);
-            color: #f1c40f;
-        }
-
-        .status-paid {
-            background: rgba(46, 204, 113, 0.2);
-            color: #2ecc71;
-        }
-
-        .status-completed {
-            background: rgba(52, 152, 219, 0.2);
-            color: #3498db;
-        }
-
-        /* Image Upload Section */
+        /* Upload Area */
         .upload-area {
-            border: 2px dashed var(--border);
+            border: 2px dashed var(--border-strong);
             padding: 3rem;
             text-align: center;
-            margin-bottom: 2rem;
+            border-radius: var(--radius-lg);
             cursor: pointer;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background: var(--bg-secondary);
         }
-
         .upload-area:hover {
-            border-color: var(--accent);
+            border-color: var(--accent-purple);
+            background: var(--bg-tertiary);
         }
-
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+        .upload-area.dragover {
+            border-color: var(--accent-pink);
+            background: rgba(255, 107, 157, 0.05);
         }
+        .upload-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .upload-text { color: var(--text-secondary); }
+        .upload-hint { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
 
-        .upload-text {
-            color: var(--text-secondary);
-        }
-
-        /* Image Gallery */
+        /* Image Grid */
         .image-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
         }
-
         .image-item {
             position: relative;
             aspect-ratio: 1;
             overflow: hidden;
+            border-radius: var(--radius);
             background: var(--bg-secondary);
+            border: 1px solid var(--border);
         }
-
         .image-item img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
-
+        .image-item:hover img { transform: scale(1.05); }
         .image-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -364,109 +416,133 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
-        .image-item:hover .image-overlay {
-            opacity: 1;
-        }
-
+        .image-item:hover .image-overlay { opacity: 1; }
         .image-btn {
             padding: 0.5rem 1rem;
-            background: var(--accent);
-            color: var(--bg-primary);
+            background: white;
+            color: var(--text-primary);
             border: none;
+            border-radius: var(--radius);
             cursor: pointer;
             font-size: 0.8rem;
+            font-weight: 600;
         }
+        .image-btn.delete { background: var(--danger); color: white; }
 
-        .image-btn.delete {
-            background: var(--danger);
-            color: white;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            max-width: 500px;
-            width: 90%;
-            padding: 2rem;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
+        /* Form Elements */
+        .form-group { margin-bottom: 1rem; }
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
             color: var(--text-secondary);
             font-size: 0.85rem;
+            font-weight: 600;
         }
-
         .form-input,
         .form-select {
             width: 100%;
-            padding: 0.75rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
             color: var(--text-primary);
             font-size: 1rem;
+            transition: all 0.3s ease;
         }
-
         .form-input:focus,
         .form-select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
         }
 
         /* Section Tabs */
-        .section-tabs {
-            display: none;
+        .section-tabs { display: none; }
+        .section-tabs.active { display: block; }
+
+        /* File Preview */
+        .file-preview {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 2px solid var(--border);
+        }
+        .preview-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .preview-remove {
+            position: absolute;
+            top: 4px; right: 4px;
+            width: 20px; height: 20px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .section-tabs.active {
-            display: block;
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--success);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        .toast.show { display: block; }
+        .toast.error { border-left-color: var(--danger); }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .image-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .image-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
     <!-- Login Section -->
     <div class="login-container" id="loginSection">
         <div class="login-box">
-            <h1 class="login-title">顺息工作室</h1>
+            <div class="login-logo">
+                <div class="login-logo-icon">✨</div>
+                <div class="login-title">顺息工作室</div>
+            </div>
             <p class="login-subtitle">管理后台登录</p>
             <form id="loginForm">
                 <input type="text" class="login-input" id="loginUsername" placeholder="用户名" required>
                 <input type="password" class="login-input" id="loginPassword" placeholder="密码" required>
-                <button type="submit" class="login-btn">登录</button>
+                <button type="submit" class="login-btn">登录 🚀</button>
             </form>
             <p class="login-error" id="loginError">用户名或密码错误</p>
         </div>
@@ -476,20 +552,21 @@
     <div class="dashboard" id="dashboardSection">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="sidebar-brand">顺息后台</div>
+            <div class="sidebar-brand">✨ <span>顺息后台</span></div>
             <ul class="sidebar-nav">
-                <li><a href="#" class="active" data-section="overview">概览</a></li>
-                <li><a href="#" data-section="bookings">预约管理</a></li>
+                <li><a href="#" class="active" data-section="overview">📊 概览</a></li>
+                <li><a href="#" data-section="bookings">📅 预约管理</a></li>
             </ul>
             <div class="sidebar-section">内容管理</div>
             <ul class="sidebar-nav">
-                <li><a href="#" data-section="images">图片管理</a></li>
-                <li><a href="#" data-section="pricing">套餐设置</a></li>
+                <li><a href="#" data-section="images">🖼️ 图片管理</a></li>
+                <li><a href="#" data-section="studio">🏠 白棚管理</a></li>
+                <li><a href="#" data-section="pricing">💰 套餐设置</a></li>
             </ul>
             <div class="sidebar-section">系统</div>
             <ul class="sidebar-nav">
-                <li><a href="#" data-section="settings">系统设置</a></li>
-                <li><a href="#" id="logoutBtn">退出登录</a></li>
+                <li><a href="#" data-section="settings">⚙️ 系统设置</a></li>
+                <li><a href="#" id="logoutBtn">🚪 退出登录</a></li>
             </ul>
         </aside>
 
@@ -498,26 +575,30 @@
             <!-- Overview Section -->
             <div class="section-tabs active" id="overviewSection">
                 <div class="page-header">
-                    <h1 class="page-title">概览</h1>
+                    <h1 class="page-title">📊 概览</h1>
                 </div>
                 <div class="stats-grid">
                     <div class="stat-card">
+                        <div class="stat-icon pink">📅</div>
                         <div class="stat-label">本月预约</div>
                         <div class="stat-value">23</div>
-                        <div class="stat-change positive">↑ 15%</div>
+                        <div class="stat-change positive">↑ 15% 较上月</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon purple">⏳</div>
                         <div class="stat-label">待处理预约</div>
                         <div class="stat-value">5</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon blue">💵</div>
                         <div class="stat-label">本月收入</div>
                         <div class="stat-value">¥8,540</div>
-                        <div class="stat-change positive">↑ 22%</div>
+                        <div class="stat-change positive">↑ 22% 较上月</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon green">🖼️</div>
                         <div class="stat-label">作品总数</div>
-                        <div class="stat-value">87</div>
+                        <div class="stat-value" id="totalImages">87</div>
                     </div>
                 </div>
                 <div class="data-card">
@@ -526,18 +607,9 @@
                     </div>
                     <table class="data-table">
                         <thead>
-                            <tr>
-                                <th>客户</th>
-                                <th>套餐</th>
-                                <th>IP</th>
-                                <th>时间</th>
-                                <th>状态</th>
-                                <th>操作</th>
-                            </tr>
+                            <tr><th>客户</th><th>套餐</th><th>IP</th><th>时间</th><th>状态</th><th>操作</th></tr>
                         </thead>
-                        <tbody id="recentBookings">
-                            <!-- Dynamic content -->
-                        </tbody>
+                        <tbody id="recentBookings"></tbody>
                     </table>
                 </div>
             </div>
@@ -545,38 +617,23 @@
             <!-- Bookings Section -->
             <div class="section-tabs" id="bookingsSection">
                 <div class="page-header">
-                    <h1 class="page-title">预约管理</h1>
+                    <h1 class="page-title">📅 预约管理</h1>
                 </div>
                 <div class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">所有预约</h3>
-                        <div class="header-actions">
-                            <select class="form-select" style="width: auto;" id="bookingFilter">
-                                <option value="all">全部状态</option>
-                                <option value="pending">待付款</option>
-                                <option value="paid">已付款</option>
-                                <option value="completed">已完成</option>
-                            </select>
-                        </div>
+                        <select class="form-select" style="width: auto;" id="bookingFilter">
+                            <option value="all">全部状态</option>
+                            <option value="pending">待付款</option>
+                            <option value="paid">已付款</option>
+                            <option value="completed">已完成</option>
+                        </select>
                     </div>
                     <table class="data-table">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>客户</th>
-                                <th>联系方式</th>
-                                <th>套餐</th>
-                                <th>IP</th>
-                                <th>棚数</th>
-                                <th>时长</th>
-                                <th>状态</th>
-                                <th>创建时间</th>
-                                <th>操作</th>
-                            </tr>
+                            <tr><th>ID</th><th>客户</th><th>联系方式</th><th>套餐</th><th>IP</th><th>状态</th><th>操作</th></tr>
                         </thead>
-                        <tbody id="allBookings">
-                            <!-- Dynamic content -->
-                        </tbody>
+                        <tbody id="allBookings"></tbody>
                     </table>
                 </div>
             </div>
@@ -584,20 +641,22 @@
             <!-- Images Section -->
             <div class="section-tabs" id="imagesSection">
                 <div class="page-header">
-                    <h1 class="page-title">图片管理</h1>
+                    <h1 class="page-title">🖼️ 图片管理</h1>
                 </div>
                 
                 <div class="data-card" style="margin-bottom: 2rem;">
                     <div class="card-header">
                         <h3 class="card-title">上传新图片</h3>
                     </div>
-                    <div style="padding: 1.5rem;">
+                    <div class="card-body">
                         <div class="upload-area" id="uploadArea">
                             <div class="upload-icon">📁</div>
-                            <p class="upload-text">点击或拖拽图片到此处上传</p>
+                            <p class="upload-text">点击或拖拽图片到此处</p>
+                            <p class="upload-hint">支持 JPG、PNG、WebP，单张最大 10MB</p>
                             <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
                         </div>
-                        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="file-preview" id="filePreview"></div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; align-items: center;">
                             <select class="form-select" id="imageIP" style="flex: 1;">
                                 <option value="">选择IP分类</option>
                                 <option value="王者荣耀">王者荣耀</option>
@@ -605,18 +664,14 @@
                                 <option value="鸣潮">鸣潮</option>
                                 <option value="原神">原神</option>
                                 <option value="无期迷途">无期迷途</option>
-                                <option value="明日方舟">明日方舟</option>
-                                <option value="崩坏星穹铁道">崩坏星穹铁道</option>
-                                <option value="英雄联盟">英雄联盟</option>
-                                <option value="永劫无间">永劫无间</option>
-                                <option value="碧蓝航线">碧蓝航线</option>
+                                <option value="白棚">白棚作品</option>
                             </select>
                             <select class="form-select" id="imageType" style="flex: 1;">
                                 <option value="gallery">作品展示</option>
                                 <option value="hero">首页轮播</option>
                                 <option value="ip-cover">IP封面</option>
                             </select>
-                            <button class="btn btn-primary" id="uploadBtn">上传</button>
+                            <button class="btn btn-primary" id="uploadBtn">上传 ✨</button>
                         </div>
                     </div>
                 </div>
@@ -629,12 +684,46 @@
                             <option value="王者荣耀">王者荣耀</option>
                             <option value="原神">原神</option>
                             <option value="第五人格">第五人格</option>
+                            <option value="白棚">白棚作品</option>
                         </select>
                     </div>
-                    <div style="padding: 1.5rem;">
-                        <div class="image-grid" id="imageGallery">
-                            <!-- Dynamic content -->
+                    <div class="card-body">
+                        <div class="image-grid" id="imageGallery"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Studio Section -->
+            <div class="section-tabs" id="studioSection">
+                <div class="page-header">
+                    <h1 class="page-title">🏠 白棚管理</h1>
+                </div>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">白棚套餐设置</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 1rem; align-items: center; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius);">
+                                <input type="text" class="form-input" value="基础白棚" placeholder="棚名">
+                                <input type="number" class="form-input" value="129" placeholder="价格">
+                                <input type="text" class="form-input" value="8×8m 空间 / 影视灯×4 / 简约道具" placeholder="配置描述">
+                                <button class="btn btn-secondary btn-sm">保存</button>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 1rem; align-items: center; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius);">
+                                <input type="text" class="form-input" value="专业白棚" placeholder="棚名">
+                                <input type="number" class="form-input" value="299" placeholder="价格">
+                                <input type="text" class="form-input" value="12×10m / 影视灯×8 / 丰富道具 / 风机烟雾" placeholder="配置描述">
+                                <button class="btn btn-secondary btn-sm">保存</button>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 1rem; align-items: center; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius);">
+                                <input type="text" class="form-input" value="VIP全景棚" placeholder="棚名">
+                                <input type="number" class="form-input" value="599" placeholder="价格">
+                                <input type="text" class="form-input" value="15×12m / 影视灯×12 / RAW直出 / 视频录制" placeholder="配置描述">
+                                <button class="btn btn-secondary btn-sm">保存</button>
+                            </div>
                         </div>
+                        <button class="btn btn-primary" style="margin-top: 1rem;">+ 添加新棚型</button>
                     </div>
                 </div>
             </div>
@@ -642,50 +731,38 @@
             <!-- Pricing Section -->
             <div class="section-tabs" id="pricingSection">
                 <div class="page-header">
-                    <h1 class="page-title">套餐设置</h1>
+                    <h1 class="page-title">💰 套餐设置</h1>
                 </div>
                 <div class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">套餐列表</h3>
-                        <button class="btn btn-primary" onclick="openPricingModal()">添加套餐</button>
+                        <button class="btn btn-primary btn-sm">+ 添加套餐</button>
                     </div>
                     <table class="data-table">
                         <thead>
-                            <tr>
-                                <th>套餐名称</th>
-                                <th>价格</th>
-                                <th>包含内容</th>
-                                <th>状态</th>
-                                <th>操作</th>
-                            </tr>
+                            <tr><th>套餐名称</th><th>价格</th><th>包含内容</th><th>状态</th><th>操作</th></tr>
                         </thead>
-                        <tbody id="pricingTable">
+                        <tbody>
                             <tr>
-                                <td>基础档</td>
+                                <td><strong>基础档</strong></td>
                                 <td>¥199</td>
                                 <td>1个棚 / 精修5张 / 当天出片</td>
                                 <td><span class="status-badge status-paid">启用</span></td>
-                                <td>
-                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
-                                </td>
+                                <td><button class="btn btn-secondary btn-sm">编辑</button></td>
                             </tr>
                             <tr>
-                                <td>进阶档</td>
+                                <td><strong>进阶档</strong></td>
                                 <td>¥299</td>
                                 <td>2个棚 / 精修15张 / 原片全送</td>
                                 <td><span class="status-badge status-paid">启用</span></td>
-                                <td>
-                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
-                                </td>
+                                <td><button class="btn btn-secondary btn-sm">编辑</button></td>
                             </tr>
                             <tr>
-                                <td>高端档</td>
+                                <td><strong>高端档</strong></td>
                                 <td>¥599</td>
                                 <td>全棚开放 / 精修30张 / RAW全送 / 花絮视频</td>
                                 <td><span class="status-badge status-paid">启用</span></td>
-                                <td>
-                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
-                                </td>
+                                <td><button class="btn btn-secondary btn-sm">编辑</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -695,38 +772,28 @@
             <!-- Settings Section -->
             <div class="section-tabs" id="settingsSection">
                 <div class="page-header">
-                    <h1 class="page-title">系统设置</h1>
+                    <h1 class="page-title">⚙️ 系统设置</h1>
                 </div>
                 <div class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">基本信息</h3>
                     </div>
-                    <div style="padding: 1.5rem;">
-                        <div class="form-group">
-                            <label class="form-label">工作室名称</label>
-                            <input type="text" class="form-input" value="顺息">
+                    <div class="card-body">
+                        <div style="display: grid; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">工作室名称</label>
+                                <input type="text" class="form-input" value="顺息">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">联系邮箱</label>
+                                <input type="email" class="form-input" value="121803909@qq.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">微信号</label>
+                                <input type="text" class="form-input" placeholder="输入微信号">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">联系电话</label>
-                            <input type="text" class="form-input" placeholder="输入联系电话">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">联系邮箱</label>
-                            <input type="email" class="form-input" value="contact@shunxi.photo">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">工作室地址</label>
-                            <input type="text" class="form-input" placeholder="输入地址">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">微信收款码</label>
-                            <input type="file" accept="image/*" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">支付宝收款码</label>
-                            <input type="file" accept="image/*" class="form-input">
-                        </div>
-                        <button class="btn btn-primary">保存设置</button>
+                        <button class="btn btn-primary" style="margin-top: 1rem;">保存设置</button>
                     </div>
                 </div>
 
@@ -734,20 +801,22 @@
                     <div class="card-header">
                         <h3 class="card-title">修改密码</h3>
                     </div>
-                    <div style="padding: 1.5rem;">
-                        <div class="form-group">
-                            <label class="form-label">当前密码</label>
-                            <input type="password" class="form-input">
+                    <div class="card-body">
+                        <div style="display: grid; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">当前密码</label>
+                                <input type="password" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">新密码</label>
+                                <input type="password" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">确认新密码</label>
+                                <input type="password" class="form-input">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">新密码</label>
-                            <input type="password" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">确认新密码</label>
-                            <input type="password" class="form-input">
-                        </div>
-                        <button class="btn btn-primary">修改密码</button>
+                        <button class="btn btn-primary" style="margin-top: 1rem;">修改密码</button>
                     </div>
                 </div>
             </div>
@@ -755,32 +824,56 @@
     </div>
 
     <script>
-        // Demo data
+        // ===== Data Store =====
+        const STORAGE_KEY = 'shunxi_images';
+        
+        // Demo bookings
         const bookings = [
-            { id: 1, name: '张三', phone: '138****1234', email: 'test@test.com', package: '进阶档', price: 299, ip: '原神', studio: '2个棚', duration: '4小时', status: 'paid', date: '2026-04-26 10:30' },
-            { id: 2, name: '李四', phone: '139****5678', email: 'test2@test.com', package: '高端档', price: 599, ip: '王者荣耀', studio: '全部', duration: '8小时', status: 'pending', date: '2026-04-26 09:15' },
-            { id: 3, name: '王五', phone: '137****9012', email: 'test3@test.com', package: '基础档', price: 199, ip: '第五人格', studio: '1个棚', duration: '2小时', status: 'completed', date: '2026-04-25 16:45' },
+            { id: 1, name: '张三', phone: '138****1234', email: 'test@test.com', package: '进阶档', price: 299, ip: '原神', status: 'paid', date: '2026-05-07 10:30' },
+            { id: 2, name: '李四', phone: '139****5678', email: 'test2@test.com', package: '高端档', price: 599, ip: '王者荣耀', status: 'pending', date: '2026-05-07 09:15' },
+            { id: 3, name: '王五', phone: '137****9012', email: 'test3@test.com', package: '基础档', price: 199, ip: '第五人格', status: 'completed', date: '2026-05-06 16:45' },
         ];
 
-        const images = [
+        // Demo images (fallback if localStorage empty)
+        const demoImages = [
             { id: 1, url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400', ip: '王者荣耀', type: 'gallery' },
             { id: 2, url: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400', ip: '原神', type: 'gallery' },
             { id: 3, url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400', ip: '第五人格', type: 'gallery' },
             { id: 4, url: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400', ip: '鸣潮', type: 'gallery' },
+            { id: 5, url: 'https://images.unsplash.com/photo-1534330207526-9e4e75c20d90?w=400', ip: '白棚', type: 'gallery' },
         ];
 
-        // Login handling
+        // Get images from localStorage or use demo
+        function getImages() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : demoImages;
+        }
+
+        // Save images to localStorage
+        function saveImages(images) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(images));
+        }
+
+        // ===== Toast =====
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show' + (isError ? ' error' : '');
+            setTimeout(() => toast.className = 'toast', 3000);
+        }
+
+        // ===== Login =====
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
             
-            // Demo credentials: admin / admin123
             if (username === 'admin' && password === 'admin123') {
                 document.getElementById('loginSection').style.display = 'none';
                 document.getElementById('dashboardSection').classList.add('active');
                 localStorage.setItem('adminLoggedIn', 'true');
                 renderDashboard();
+                showToast('登录成功！欢迎回来 ✨');
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
@@ -794,12 +887,13 @@
         }
 
         // Logout
-        document.getElementById('logoutBtn').addEventListener('click', function() {
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
             localStorage.removeItem('adminLoggedIn');
             location.reload();
         });
 
-        // Navigation
+        // ===== Navigation =====
         document.querySelectorAll('.sidebar-nav a[data-section]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -812,11 +906,12 @@
             });
         });
 
-        // Render dashboard
+        // ===== Render Dashboard =====
         function renderDashboard() {
             renderRecentBookings();
             renderAllBookings();
             renderImages();
+            updateImageCount();
         }
 
         function renderRecentBookings() {
@@ -828,7 +923,7 @@
                     <td>${b.ip}</td>
                     <td>${b.date}</td>
                     <td><span class="status-badge status-${b.status}">${getStatusText(b.status)}</span></td>
-                    <td><button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">详情</button></td>
+                    <td><button class="btn btn-secondary btn-sm">详情</button></td>
                 </tr>
             `).join('');
         }
@@ -839,60 +934,68 @@
                 <tr>
                     <td>#${b.id}</td>
                     <td>${b.name}</td>
-                    <td>${b.phone}<br>${b.email}</td>
+                    <td>${b.phone}</td>
                     <td>${b.package} (¥${b.price})</td>
                     <td>${b.ip}</td>
-                    <td>${b.studio}</td>
-                    <td>${b.duration}</td>
                     <td><span class="status-badge status-${b.status}">${getStatusText(b.status)}</span></td>
-                    <td>${b.date}</td>
                     <td>
-                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">编辑</button>
-                        <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;">删除</button>
+                        <button class="btn btn-secondary btn-sm">编辑</button>
+                        <button class="btn btn-danger btn-sm">删除</button>
                     </td>
                 </tr>
             `).join('');
         }
 
         function renderImages() {
+            const filter = document.getElementById('imageFilter').value;
+            const images = getImages();
+            const filtered = filter === 'all' ? images : images.filter(img => img.ip === filter);
+            
             const gallery = document.getElementById('imageGallery');
-            gallery.innerHTML = images.map(img => `
-                <div class="image-item">
-                    <img src="${img.url}" alt="">
+            gallery.innerHTML = filtered.map(img => `
+                <div class="image-item" data-id="${img.id}">
+                    <img src="${img.url}" alt="${img.ip}">
                     <div class="image-overlay">
-                        <button class="image-btn">编辑</button>
-                        <button class="image-btn delete">删除</button>
+                        <button class="image-btn" onclick="downloadImage('${img.url}', '${img.ip}')">下载</button>
+                        <button class="image-btn delete" onclick="deleteImage(${img.id})">删除</button>
                     </div>
                 </div>
             `).join('');
         }
 
+        function updateImageCount() {
+            document.getElementById('totalImages').textContent = getImages().length;
+        }
+
         function getStatusText(status) {
-            const texts = {
-                pending: '待付款',
-                paid: '已付款',
-                completed: '已完成'
-            };
+            const texts = { pending: '待付款', paid: '已付款', completed: '已完成' };
             return texts[status] || status;
         }
 
-        // Upload handling
+        // ===== Image Filter =====
+        document.getElementById('imageFilter').addEventListener('change', renderImages);
+
+        // ===== File Upload =====
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
+        const filePreview = document.getElementById('filePreview');
+        let selectedFiles = [];
 
         uploadArea.addEventListener('click', () => fileInput.click());
+        
         uploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
-            uploadArea.style.borderColor = 'var(--accent)';
+            uploadArea.classList.add('dragover');
         });
+        
         uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.borderColor = 'var(--border)';
+            uploadArea.classList.remove('dragover');
         });
+        
         uploadArea.addEventListener('drop', (e) => {
             e.preventDefault();
-            uploadArea.style.borderColor = 'var(--border)';
-            const files = e.dataTransfer.files;
-            handleFiles(files);
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
         });
 
         fileInput.addEventListener('change', (e) => {
@@ -900,25 +1003,88 @@
         });
 
         function handleFiles(files) {
-            console.log('Selected files:', files);
-            // In real implementation, would upload to server
-            alert(`已选择 ${files.length} 个文件。实际部署时将上传到服务器。`);
+            selectedFiles = Array.from(files);
+            filePreview.innerHTML = selectedFiles.map((file, i) => `
+                <div class="preview-item">
+                    <img src="${URL.createObjectURL(file)}" alt="">
+                    <button class="preview-remove" onclick="removeFile(${i})">×</button>
+                </div>
+            `).join('');
         }
 
+        window.removeFile = function(index) {
+            selectedFiles.splice(index, 1);
+            if (selectedFiles.length === 0) {
+                filePreview.innerHTML = '';
+                fileInput.value = '';
+            } else {
+                handleFiles(selectedFiles);
+            }
+        };
+
+        // Upload button
         document.getElementById('uploadBtn').addEventListener('click', () => {
             const ip = document.getElementById('imageIP').value;
             const type = document.getElementById('imageType').value;
+            
             if (!ip) {
-                alert('请选择IP分类');
+                showToast('请选择IP分类', true);
                 return;
             }
-            if (fileInput.files.length === 0) {
-                alert('请选择要上传的图片');
+            if (selectedFiles.length === 0) {
+                showToast('请选择要上传的图片', true);
                 return;
             }
-            // Upload logic would go here
-            alert(`上传功能需要后端服务器支持。\n选择的IP: ${ip}\n类型: ${type}\n文件数: ${fileInput.files.length}`);
+
+            // Convert files to base64 and store
+            const images = getImages();
+            let processed = 0;
+            
+            selectedFiles.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    images.push({
+                        id: Date.now() + processed,
+                        url: e.target.result,
+                        ip: ip,
+                        type: type,
+                        name: file.name
+                    });
+                    processed++;
+                    
+                    if (processed === selectedFiles.length) {
+                        saveImages(images);
+                        renderImages();
+                        updateImageCount();
+                        selectedFiles = [];
+                        filePreview.innerHTML = '';
+                        fileInput.value = '';
+                        showToast(`成功上传 ${processed} 张图片！ ✨`);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
         });
+
+        // ===== Image Actions =====
+        window.downloadImage = function(url, name) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `shunxi_${name}_${Date.now()}.jpg`;
+            a.click();
+            showToast('图片已下载');
+        };
+
+        window.deleteImage = function(id) {
+            if (!confirm('确定删除这张图片吗？')) return;
+            
+            let images = getImages();
+            images = images.filter(img => img.id !== id);
+            saveImages(images);
+            renderImages();
+            updateImageCount();
+            showToast('图片已删除');
+        };
     </script>
 </body>
 </html>
