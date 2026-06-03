@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>编辑文件</title>
+<style>
+body{font-family:sans-serif;margin:20px;}
+.nav{background:#667eea;color:white;padding:15px;margin-bottom:20px;}
+.nav a{color:white;text-decoration:none;margin-right:15px;}
+select,textarea,button{display:block;margin:10px 0;padding:8px;}
+textarea{width:100%;height:400px;font-family:monospace;}
+button{background:#4CAF50;color:white;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="nav">
+<strong>⚙️管理中心</strong>
+<a href="dashboard.html">仪表盘</a>
+<a href="upload.html">上传图片</a>
+<a href="edit.html">编辑文件</a>
+</div>
+
+<h2>✏️编辑网站文件</h2>
+
+<label>选择文件：</label>
+<select id="fileSelect" onchange="loadFile()">
+<option value="../index.html">首页 - index.html</option>
+<option value="../ip-wangzhe.html">王者荣耀 - ip-wangzhe.html</option>
+<option value="../ip-yuanshen.html">原神 - ip-yuanshen.html</option>
+<option value="../ip-mingchao.html">鸣潮 - ip-mingchao.html</option>
+<option value="../ip-diwu.html">第五人格 - ip-diwu.html</option>
+</select>
+
+<textarea id="editor" placeholder="点击「加载」按钮开始编辑..."></textarea>
+
+<button onclick="saveFile()">💾保存更改</button>
+<p style="color:#666;font-size:12px;">⚠️注意：此为演示版。实际保存需要配置GitHub Token。</p>
+
+<script>
+if(localStorage.getItem('admToken')!=='ok'){
+window.location.href='index.html';
+}
+
+function loadFile(){
+var select=document.getElementById('fileSelect');
+var file=select.value;
+alert('演示：将加载 '+file+' 的内容\n（实际需用GitHub API读取）');
+document.getElementById('editor').value='// 此处应显示'+file+'的源代码\n// 演示版请直接编辑后保存';
+}
+
+function saveFile(){
+var content=document.getElementById('editor').value;
+if(!content){alert('内容为空！');return;}
+alert('演示保存成功！\n\n实际部署需调用GitHub API:\nPUT /repos/121803909/shunxi-studio/contents/[文件路径]');
+}
+</script>
+
+</body>
+</html>
